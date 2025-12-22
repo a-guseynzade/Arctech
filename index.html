@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/react.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jhontraktor - Construction Company</title>
+    <meta name="description" content="We provide the best architectural design, construction, and building maintenance services for you." />
+    
+    <!-- Preconnect to Google Fonts (MUST be before font load) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 
+      Google Fonts - Non-blocking load with media="print" trick
+      Loads: Bebas Neue (headings), Outfit (body), Great Vibes (signature)
+    -->
+    <link 
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+      media="print" 
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Great+Vibes&display=swap">
+    </noscript>
+    
+    <!-- Preload critical Hero image for LCP optimization -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80&auto=format"
+      fetchpriority="high"
+    >
+    
+    <!-- Preconnect to external image sources -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://randomuser.me">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
