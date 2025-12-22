@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "shadcn": {
-      "command": "npx.cmd",
+      "command": "npx",
       "args": [
         "shadcn@latest",
         "mcp"
@@ -9,7 +9,10 @@
     },
     "context7": {
       "command": "npx.cmd",
-      "args": ["-y", "@upstash/context7-mcp"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     }
   }
 }

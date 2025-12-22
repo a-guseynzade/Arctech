@@ -1,94 +1,39 @@
-class HttpError extends Error {
-  constructor(response, data) {
-    super(`HTTP Error: ${response.status} ${response.statusText}`)
-    this.name = 'HttpError'
-    this.status = response.status
-    this.statusText = response.statusText
-    this.data = data
-  }
-}
+const BASE_URL = import.meta.env.VITE_API_URL || '';
 
-async function handleResponse(response) {
-  let data
-  const contentType = response.headers.get('content-type')
+async function httpClient(endpoint, options = {}) {
+  const url = `${BASE_URL}${endpoint}`;
   
-  if (contentType && contentType.includes('application/json')) {
-    data = await response.json()
-  } else {
-    data = await response.text()
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+  };
+
+  const config = {
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options.headers,
+    },
+  };
+
+  if (config.body && typeof config.body === 'object') {
+    config.body = JSON.stringify(config.body);
   }
+
+  const response = await fetch(url, config);
 
   if (!response.ok) {
-    throw new HttpError(response, data)
+    const error = new Error(`HTTP Error: ${response.status}`);
+    error.status = response.status;
+    error.response = response;
+    throw error;
   }
 
-  return data
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.includes('application/json')) {
+    return response.json();
+  }
+
+  return response.text();
 }
 
-export const fetchClient = {
-  async get(url, options = {}) {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      ...options,
-    })
-    return handleResponse(response)
-  },
-
-  async post(url, body, options = {}) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      body: JSON.stringify(body),
-      ...options,
-    })
-    return handleResponse(response)
-  },
-
-  async put(url, body, options = {}) {
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      body: JSON.stringify(body),
-      ...options,
-    })
-    return handleResponse(response)
-  },
-
-  async patch(url, body, options = {}) {
-    const response = await fetch(url, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      body: JSON.stringify(body),
-      ...options,
-    })
-    return handleResponse(response)
-  },
-
-  async delete(url, options = {}) {
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      ...options,
-    })
-    return handleResponse(response)
-  },
-}
-
-export { HttpError }
-
+export default httpClient;
