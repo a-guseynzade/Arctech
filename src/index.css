@@ -9,6 +9,21 @@
 @theme inline {
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+  /* Scaled Font Sizes (1.5x default Tailwind values) */
+  --text-xs: 1.125rem;      /* 0.75rem × 1.5 */
+  --text-sm: 1.3125rem;     /* 0.875rem × 1.5 */
+  --text-base: 1.5rem;      /* 1rem × 1.5 */
+  --text-lg: 1.6875rem;     /* 1.125rem × 1.5 */
+  --text-xl: 1.875rem;      /* 1.25rem × 1.5 */
+  --text-2xl: 2.25rem;      /* 1.5rem × 1.5 */
+  --text-3xl: 2.8125rem;    /* 1.875rem × 1.5 */
+  --text-4xl: 3.375rem;     /* 2.25rem × 1.5 */
+  --text-5xl: 4.5rem;       /* 3rem × 1.5 */
+  --text-6xl: 5.625rem;     /* 3.75rem × 1.5 */
+  --text-7xl: 6.75rem;      /* 4.5rem × 1.5 */
+  --text-8xl: 9rem;         /* 6rem × 1.5 */
+  --text-9xl: 12rem;        /* 8rem × 1.5 */
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
