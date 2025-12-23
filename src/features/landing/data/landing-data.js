@@ -9,9 +9,6 @@ import projectApartments from "@/assets/project-apartments.png";
 import projectOffice from "@/assets/project-office.png";
 import projectVilla from "@/assets/project-villa.png";
 import projectWarehouse from "@/assets/project-warehouse.png";
-import avatar1 from "@/assets/avatar-1.png";
-import avatar2 from "@/assets/avatar-2.png";
-import avatar3 from "@/assets/avatar-3.png";
 
 // ============================================
 // NAVIGATION & COMPANY INFO
@@ -46,12 +43,6 @@ export const stats = [
   { value: 25, suffix: "+", label: "Years of", sublabel: "Experience" },
   { value: 378, suffix: "+", label: "Projects", sublabel: "Complete" },
   { value: 69, suffix: "+", label: "Winning", sublabel: "Global Awards" },
-];
-
-export const heroFeatures = [
-  "Quality Control System, 100% Satisfaction Guarantee",
-  "Highly Professional Staff, Accurate Testing Procedure",
-  "On-deadline Workmanship, Professional And Qualified",
 ];
 
 // ============================================
@@ -158,34 +149,6 @@ export const projects = [
     category: "Construction & Building",
     image: projectWarehouse,
     tags: ["Construction", "Building"],
-  },
-];
-
-// ============================================
-// TESTIMONIALS
-// ============================================
-
-export const testimonials = [
-  {
-    id: 1,
-    text: "I am very satisfied with the services. Their team is very professional and efficient in completing our project on time and at a very affordable cost. The quality of their work is exceptional, and I highly recommend Arctech for any construction project.",
-    author: "Tom Delange",
-    position: "CEO, Jasmine Corporation",
-    avatar: avatar1,
-  },
-  {
-    id: 2,
-    text: "Arctech exceeded our expectations in every way. Their attention to detail and commitment to quality made our office renovation project a complete success. The team was responsive and professional throughout the entire process.",
-    author: "Sarah Mitchell",
-    position: "Director, TechStart Inc",
-    avatar: avatar2,
-  },
-  {
-    id: 3,
-    text: "The team's professionalism and expertise are unmatched. They delivered our commercial building project on schedule and within budget. Their communication throughout the process was excellent, keeping us informed at every stage.",
-    author: "Michael Chen",
-    position: "Founder, BuildRight Properties",
-    avatar: avatar3,
   },
 ];
 

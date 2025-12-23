@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { stats, heroFeatures, companyInfo } from "@/features/landing/data/landing-data";
+import { ArrowRight } from "lucide-react";
+import { stats, companyInfo } from "@/features/landing/data/landing-data";
 import heroBg from "@/assets/hero-bg.png";
 
 export default function HeroSection() {
@@ -61,34 +61,6 @@ export default function HeroSection() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Right Content - Feature Badges */}
-          <div className="hidden lg:block">
-            <div className="bg-[var(--orange)] rounded-lg p-6 max-w-sm ml-auto transform translate-y-20">
-              <div className="space-y-4">
-                {heroFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[var(--dark)] mt-0.5 flex-shrink-0" />
-                    <p className="text-[var(--dark)] font-medium text-sm">{feature}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Features Badge */}
-      <div className="lg:hidden bg-[var(--orange)] py-6 px-4">
-        <div className="container mx-auto">
-          <div className="grid gap-4">
-            {heroFeatures.map((feature, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[var(--dark)] mt-0.5 flex-shrink-0" />
-                <p className="text-[var(--dark)] font-medium text-sm">{feature}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
