@@ -10,7 +10,7 @@ export default function FeaturedProjects() {
   const filteredProjects =
     activeCategory === "All Works"
       ? projects
-      : projects.filter((project) => project.tags.includes(activeCategory));
+      : projects.filter((project) => project.category === activeCategory);
 
   return (
     <section id="projects" className="py-16 lg:py-24 bg-white">

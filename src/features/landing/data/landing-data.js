@@ -2,13 +2,19 @@
 // ARCTECH CONSTRUCTION COMPANY - LANDING DATA
 // ============================================
 
-// Image imports (local assets for better performance)
-import projectTower from "@/assets/project-tower.png";
-import projectHouse from "@/assets/project-house.png";
-import projectApartments from "@/assets/project-apartments.png";
-import projectOffice from "@/assets/project-office.png";
-import projectVilla from "@/assets/project-villa.png";
-import projectWarehouse from "@/assets/project-warehouse.png";
+// Category gallery images
+import arch001 from "@/assets/Architecture/Architecture001.jpg";
+import arch002 from "@/assets/Architecture/Architecture002.jpg";
+import arch003 from "@/assets/Architecture/Architecture003.jpg";
+import build001 from "@/assets/Building/Building001.jpg";
+import build002 from "@/assets/Building/Building002.jpg";
+import build003 from "@/assets/Building/Building003.jpg";
+import interior001 from "@/assets/Interior/Interior001.jpg";
+import interior002 from "@/assets/Interior/Interior002.jpg";
+import interior003 from "@/assets/Interior/Interior003.jpg";
+import const001 from "@/assets/Construction/Construction001.jpg";
+import const002 from "@/assets/Construction/Construction002.jpg";
+import const003 from "@/assets/Construction/Construction003.jpg";
 
 // ============================================
 // NAVIGATION & COMPANY INFO
@@ -103,52 +109,98 @@ export const projectCategories = [
   "Construction",
   "Architecture",
   "Building",
-  "Renovations",
   "Interior",
 ];
 
+// Category gallery images mapped by category
 export const projects = [
+  // Architecture
   {
-    id: 1,
+    id: "arch-1",
     title: "Skyview Tower",
-    category: "Renovation & Architecture",
-    image: projectTower,
-    tags: ["Construction", "Architecture", "Renovations"],
+    category: "Architecture",
+    description: "Modern architectural design",
+    image: arch001,
   },
   {
-    id: 2,
-    title: "The Fallingwater House",
-    category: "Building & Interior",
-    image: projectHouse,
-    tags: ["Building", "Interior"],
-  },
-  {
-    id: 3,
-    title: "The Orange Apartments",
-    category: "Construction & Interior",
-    image: projectApartments,
-    tags: ["Construction", "Interior"],
-  },
-  {
-    id: 4,
+    id: "arch-2",
     title: "Modern Office Complex",
-    category: "Architecture & Building",
-    image: projectOffice,
-    tags: ["Architecture", "Building"],
+    category: "Architecture",
+    description: "Contemporary architecture",
+    image: arch002,
   },
   {
-    id: 5,
+    id: "arch-3",
+    title: "Innovation Hub",
+    category: "Architecture",
+    description: "Innovative architectural project",
+    image: arch003,
+  },
+  // Building
+  {
+    id: "build-1",
+    title: "The Fallingwater House",
+    category: "Building",
+    description: "Commercial building project",
+    image: build001,
+  },
+  {
+    id: "build-2",
+    title: "Urban Heights",
+    category: "Building",
+    description: "Residential building complex",
+    image: build002,
+  },
+  {
+    id: "build-3",
+    title: "Metro Plaza",
+    category: "Building",
+    description: "Modern building construction",
+    image: build003,
+  },
+  // Interior
+  {
+    id: "int-1",
+    title: "The Orange Apartments",
+    category: "Interior",
+    description: "Modern interior design",
+    image: interior001,
+  },
+  {
+    id: "int-2",
     title: "Luxury Villa Estate",
-    category: "Renovations & Interior",
-    image: projectVilla,
-    tags: ["Renovations", "Interior"],
+    category: "Interior",
+    description: "Luxury interior styling",
+    image: interior002,
   },
   {
-    id: 6,
+    id: "int-3",
+    title: "Executive Lounge",
+    category: "Interior",
+    description: "Contemporary interior space",
+    image: interior003,
+  },
+  // Construction
+  {
+    id: "const-1",
     title: "Industrial Warehouse",
-    category: "Construction & Building",
-    image: projectWarehouse,
-    tags: ["Construction", "Building"],
+    category: "Construction",
+    description: "Active construction site",
+    image: const001,
+  },
+  {
+    id: "const-2",
+    title: "Harbor Bridge",
+    category: "Construction",
+    description: "Building under construction",
+    image: const002,
+  },
+  {
+    id: "const-3",
+    title: "Central Station",
+    category: "Construction",
+    description: "Construction progress",
+    image: const003,
   },
 ];
 
