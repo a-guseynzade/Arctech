@@ -103,8 +103,8 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Arctech Brand Colors */
-  --orange: #FF6B00;
-  --orange-dark: #E55A00;
+  --primary-brand: #1c4e7a;
+  --primary-brand-dark: #153d5f;
   --dark: #1A1A1A;
   --dark-lighter: #2A2A2A;
 }
@@ -143,8 +143,8 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   /* Arctech Brand Colors - Dark Mode */
-  --orange: #FF6B00;
-  --orange-dark: #E55A00;
+  --primary-brand: #1c4e7a;
+  --primary-brand-dark: #153d5f;
   --dark: #1A1A1A;
   --dark-lighter: #2A2A2A;
 }

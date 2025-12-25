@@ -19,7 +19,7 @@ export default function RequestQuote() {
           {/* Left - Form */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Request A <span className="text-[var(--orange)]">Quote</span>
+              Request A <span className="text-[var(--primary-brand)]">Quote</span>
             </h2>
             <p className="text-white/60 mb-8">
               Fill in the form below and we'll get back to you as soon as possible.
@@ -52,7 +52,7 @@ export default function RequestQuote() {
                       <SelectItem
                         key={service.value}
                         value={service.value}
-                        className="text-white hover:bg-[var(--orange)]/20 focus:bg-[var(--orange)]/20"
+                        className="text-white hover:bg-[var(--primary-brand)]/20 focus:bg-[var(--primary-brand)]/20"
                       >
                         {service.label}
                       </SelectItem>
@@ -64,7 +64,7 @@ export default function RequestQuote() {
                 placeholder="Additional Details"
                 className="bg-white/10 border-white/20 text-white placeholder:text-white/40 min-h-[120px]"
               />
-              <Button className="w-full bg-[var(--orange)] hover:bg-[var(--orange-dark)] text-white font-semibold h-12">
+              <Button className="w-full bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold h-12">
                 Submit Request
               </Button>
             </form>
@@ -77,8 +77,8 @@ export default function RequestQuote() {
             <div className="space-y-6">
               {/* Location */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-[var(--orange)]/20 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-[var(--orange)]" />
+                <div className="w-12 h-12 rounded-lg bg-[var(--primary-brand)]/20 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-[var(--primary-brand)]" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold mb-1">
@@ -94,8 +94,8 @@ export default function RequestQuote() {
 
               {/* Contact */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-[var(--orange)]/20 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-[var(--orange)]" />
+                <div className="w-12 h-12 rounded-lg bg-[var(--primary-brand)]/20 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-[var(--primary-brand)]" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold mb-1">
@@ -112,8 +112,8 @@ export default function RequestQuote() {
 
               {/* Hours */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-[var(--orange)]/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-[var(--orange)]" />
+                <div className="w-12 h-12 rounded-lg bg-[var(--primary-brand)]/20 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-6 h-6 text-[var(--primary-brand)]" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold mb-1">
@@ -133,11 +133,11 @@ export default function RequestQuote() {
               <p className="text-white/80 mb-4">
                 Do You Have Any Questions?
                 <br />
-                <span className="text-[var(--orange)] font-semibold">Contact Us 24 / 7 for help.</span>
+                <span className="text-[var(--primary-brand)] font-semibold">Contact Us 24 / 7 for help.</span>
               </p>
               <Button
                 variant="outline"
-                className="border-[var(--orange)] text-[var(--orange)] hover:bg-[var(--orange)] hover:text-white"
+                className="border-[var(--primary-brand)] text-[var(--primary-brand)] hover:bg-[var(--primary-brand)] hover:text-white"
               >
                 Contact Us
               </Button>

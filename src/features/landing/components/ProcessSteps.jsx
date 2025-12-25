@@ -25,11 +25,11 @@ export default function ProcessSteps() {
                 <div className="text-center relative">
                   {/* Icon Container */}
                   <div className="relative inline-flex mb-6">
-                    <div className="w-24 h-24 rounded-full bg-[var(--dark-lighter)] border-2 border-[var(--orange)]/30 flex items-center justify-center group-hover:border-[var(--orange)] transition-colors duration-300">
-                      <Icon className="w-10 h-10 text-[var(--orange)]" />
+                    <div className="w-24 h-24 rounded-full bg-[var(--dark-lighter)] border-2 border-[var(--primary-brand)]/30 flex items-center justify-center group-hover:border-[var(--primary-brand)] transition-colors duration-300">
+                      <Icon className="w-10 h-10 text-[var(--primary-brand)]" />
                     </div>
                     {/* Number Badge */}
-                    <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[var(--orange)] text-[var(--dark)] text-sm font-bold flex items-center justify-center">
+                    <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[var(--primary-brand)] text-[var(--dark)] text-sm font-bold flex items-center justify-center">
                       {step.number}
                     </span>
                   </div>

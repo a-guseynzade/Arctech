@@ -29,45 +29,56 @@ export const navLinks = [
 
 export const companyInfo = {
   name: "Arctech",
-  tagline: "Building Tomorrow's Landmarks",
+  tagline: "Build Your Dreams",
   description:
     "We provide exceptional architectural design, construction, and building maintenance services. With decades of experience and a commitment to excellence, we transform visions into reality.",
 };
 
 export const languages = [
   { code: "en", label: "English" },
-  { code: "es", label: "Español" },
-  { code: "fr", label: "Français" },
-  { code: "de", label: "Deutsch" },
+  { code: "tr", label: "Türkçe" },
 ];
 
 // ============================================
 // HERO SECTION
 // ============================================
 
-export const stats = [
-  { value: 25, suffix: "+", label: "Years of", sublabel: "Experience" },
-  { value: 378, suffix: "+", label: "Projects", sublabel: "Complete" },
-  { value: 69, suffix: "+", label: "Winning", sublabel: "Global Awards" },
-];
-
 // ============================================
-// EXPERIENCE SECTION
+// CORE VALUES SECTION
 // ============================================
 
-export const experienceData = {
-  years: 25,
-  title: "of experience!",
-  paragraphs: [
-    "We have a team of experienced professionals who have been in the industry for over 25 years. Our contractors possess a wealth of knowledge and skills acquired through decades of hands-on work, making them true experts in their field.",
-    "With 25 years of experience, our contractors have developed a deep understanding of industry standards and regulations. We ensure that all our projects comply with the latest safety and building codes, and that the final product meets or exceeds our client's expectations.",
-  ],
-  founder: {
-    name: "John Morrison",
-    title: "Founder & CEO",
-    signature: "John M.",
+export const chooseUsValues= [
+  {
+    icon: "Target",
+    title: "Quality First",
+    description: "We never compromise on quality, ensuring every project meets the highest standards.",
   },
-};
+  {
+    icon: "Award",
+    title: "Excellence",
+    description: "Striving for exceptional results in everything we do, from planning to completion.",
+  },
+  {
+    icon: "Handshake",
+    title: "Trust & Transparency",
+    description: "Building lasting relationships through honest communication and reliable partnerships.",
+  },
+  {
+    icon: "ShieldCheck",
+    title: "Safety First",
+    description: "Prioritizing the safety of our team and clients in every project we undertake.",
+  },
+  {
+    icon: "Lightbulb",
+    title: "Innovation",
+    description: "Embracing modern techniques and technologies to deliver cutting-edge solutions.",
+  },
+  {
+    icon: "Leaf",
+    title: "Sustainability",
+    description: "Committed to eco-friendly practices and sustainable building for a better future.",
+  },
+];
 
 // ============================================
 // PROCESS STEPS
@@ -215,13 +226,6 @@ export const services = [
   { value: "interior", label: "Interior Design" },
   { value: "consulting", label: "Consulting" },
   { value: "maintenance", label: "Building Maintenance" },
-];
-
-export const ctaFeatures = [
-  "Professional Staff",
-  "100% Satisfaction",
-  "Accurate Testing",
-  "Transparent Pricing",
 ];
 
 export const contactInfo = {

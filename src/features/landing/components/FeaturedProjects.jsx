@@ -28,7 +28,7 @@ export default function FeaturedProjects() {
                 <TabsTrigger
                   key={category}
                   value={category}
-                  className="data-[state=active]:bg-[var(--orange)] data-[state=active]:text-white bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm"
+                  className="data-[state=active]:bg-[var(--primary-brand)] data-[state=active]:text-white bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm"
                 >
                   {category}
                 </TabsTrigger>
@@ -66,7 +66,7 @@ export default function FeaturedProjects() {
         <div className="text-right mt-8">
           <a
             href="#"
-            className="inline-flex items-center gap-2 text-[var(--orange)] hover:text-[var(--orange-dark)] font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-[var(--primary-brand)] hover:text-[var(--primary-brand-dark)] font-semibold transition-colors"
           >
             Explore All Projects
             <ArrowRight className="w-4 h-4" />
