@@ -1,16 +1,29 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
+import { OptimizedImage } from "@/components/common/OptimizedImage";
 import { projects, projectCategories } from "@/features/landing/data/landing-data";
+import { GalleryModal } from "./GalleryModal";
 
 export default function FeaturedProjects() {
   const [activeCategory, setActiveCategory] = useState("All Works");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const filteredProjects =
     activeCategory === "All Works"
       ? projects
       : projects.filter((project) => project.category === activeCategory);
+
+  const handleImageClick = (index) => {
+    setSelectedIndex(index);
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
   return (
     <section id="projects" className="py-16 lg:py-24 bg-white">
@@ -39,25 +52,22 @@ export default function FeaturedProjects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.slice(0, 3).map((project) => (
+          {filteredProjects.slice(0, 3).map((project, index) => (
             <Card
               key={project.id}
-              className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              onClick={() => handleImageClick(index)}
+              className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
             >
-              <div className="relative overflow-hidden">
-                <img
+              <div className="relative overflow-hidden h-64">
+                <OptimizedImage
                   src={project.image}
-                  alt={project.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  thumbnail={project.thumbnail}
+                  alt={project.alt}
+                  className="w-full h-full"
+                  imgClassName="group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-[var(--dark)] mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{project.category}</p>
-              </CardContent>
             </Card>
           ))}
         </div>
@@ -73,6 +83,15 @@ export default function FeaturedProjects() {
           </a>
         </div>
       </div>
+
+      {/* Gallery Modal */}
+      <GalleryModal
+        images={filteredProjects}
+        initialIndex={selectedIndex}
+        open={modalOpen}
+        onClose={handleModalClose}
+      />
     </section>
   );
 }
+
