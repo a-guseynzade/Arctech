@@ -20,6 +20,9 @@ const NAV_DIRS = [
   { dir: 1, Icon: ChevronRight, label: "Next", pos: "right-4" },
 ];
 
+/** Global preload cache - persists across modal opens */
+const preloadCache = new Set();
+
 // ============================================================================
 // UTILITIES
 // ============================================================================
@@ -27,9 +30,10 @@ const NAV_DIRS = [
 /** Modular index wrap: handles negative indices elegantly */
 const wrap = (i, n) => ((i % n) + n) % n;
 
-/** Preload image into browser cache */
+/** Preload image into browser cache with de-duplication */
 const preloadImage = (src) => {
-  if (!src) return;
+  if (!src || preloadCache.has(src)) return;
+  preloadCache.add(src);
   const img = new Image();
   img.src = src;
 };
@@ -94,7 +98,8 @@ const NavigationButtons = memo(function NavigationButtons({ onNavigate }) {
 });
 
 /**
- * Individual slide item with glassmorphism effect
+ * Individual slide item with optimized gradient vignette effect
+ * Replaces expensive blur-background with lightweight gradient overlay
  * @param {{ project: { id: string, image: string, alt: string }, index: number, isLoaded: boolean, onLoad: (index: number) => void }} props
  */
 const SlideItem = memo(function SlideItem({ project, index, isLoaded, onLoad }) {
@@ -103,13 +108,12 @@ const SlideItem = memo(function SlideItem({ project, index, isLoaded, onLoad }) 
   return (
     <CarouselItem className="flex items-center justify-center">
       <div className="relative w-[80vw] h-[75vh] max-w-5xl rounded-2xl overflow-hidden">
-        {/* Blurred background layer */}
-        <div
-          className="absolute inset-0 bg-cover bg-center blur-[40px] brightness-[0.6] scale-[1.2]"
-          style={{ backgroundImage: `url(${encodeURI(project.image)})` }}
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Optimized gradient vignette - replaces expensive blur-background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
+        
+        {/* Subtle radial gradient for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+        
         {/* Foreground content */}
         <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
           {!isLoaded && <Skeleton className="w-full h-full rounded-xl" />}
@@ -119,6 +123,7 @@ const SlideItem = memo(function SlideItem({ project, index, isLoaded, onLoad }) 
             onLoad={handleLoad}
             className={cn(
               "max-w-full max-h-full object-contain transition-opacity duration-300",
+              "drop-shadow-2xl", // Adds depth to image
               isLoaded ? "opacity-100" : "opacity-0 absolute"
             )}
           />
@@ -135,6 +140,13 @@ const SlideItem = memo(function SlideItem({ project, index, isLoaded, onLoad }) 
 /**
  * Gallery Modal with optimized image slider
  * Uses Radix Dialog primitives for full-screen overlay with proper accessibility
+ * 
+ * Optimizations applied:
+ * - Virtualized rendering: only current ±1 slides are rendered
+ * - No expensive blur effects: uses gradient overlays instead
+ * - Global preload cache: prevents duplicate image loads
+ * - Persistent loaded state: images stay cached between modal opens
+ * 
  * @param {{ images: Array<{ id: string, image: string, alt: string }>, initialIndex?: number, open: boolean, onClose: () => void }} props
  */
 export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
@@ -142,8 +154,13 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
   const [loadedImages, setLoadedImages] = useState(new Set());
   const [api, setApi] = useState(null);
 
-  const loadedRef = useRef(new Set());
   const n = images?.length ?? 0;
+
+  // Compute visible slide indices for virtualization (current ±1)
+  const visibleRange = useMemo(() => {
+    if (n === 0) return [];
+    return [-1, 0, 1].map(offset => wrap(currentIndex + offset, n));
+  }, [currentIndex, n]);
 
   const carouselOpts = useMemo(
     () => ({ startIndex: initialIndex, loop: true }),
@@ -165,11 +182,6 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
     [onClose]
   );
 
-  // Sync loadedRef in effect (React 18+ concurrent safe)
-  useEffect(() => {
-    loadedRef.current = loadedImages;
-  }, [loadedImages]);
-
   // Sync carousel position when modal opens
   useEffect(() => {
     if (open && api) {
@@ -186,12 +198,12 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
     return () => api.off("select", onSelect);
   }, [api]);
 
-  // Prefetch adjacent images using modular arithmetic
+  // Prefetch adjacent images using global cache
   useEffect(() => {
     if (!open || n === 0) return;
     [-1, 0, 1].forEach((offset) => {
       const i = wrap(currentIndex + offset, n);
-      if (!loadedRef.current.has(i)) preloadImage(images[i]?.image);
+      preloadImage(images[i]?.image);
     });
   }, [open, currentIndex, images, n]);
 
@@ -206,18 +218,13 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, api, handleNavigate]);
 
-  // Reset loaded state on close
-  useEffect(() => {
-    if (!open) setLoadedImages(new Set());
-  }, [open]);
-
   if (!images || n === 0) return null;
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={handleOpenChange}>
       <DialogPrimitive.Portal>
-        {/* Dark backdrop overlay with blur */}
-        <DialogPrimitive.Overlay className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        {/* Dark backdrop overlay - removed backdrop-blur for performance */}
+        <DialogPrimitive.Overlay className="fixed inset-0 z-[100] bg-black/90 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         
         {/* Full-screen content */}
         <DialogPrimitive.Content
@@ -239,14 +246,17 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
 
               <Carousel setApi={setApi} className="w-full" opts={carouselOpts}>
                 <CarouselContent>
+                  {/* Virtualized rendering: only render visible slides */}
                   {images.map((project, i) => (
-                    <SlideItem
-                      key={project.id}
-                      project={project}
-                      index={i}
-                      isLoaded={loadedImages.has(i)}
-                      onLoad={handleImageLoad}
-                    />
+                    visibleRange.includes(i) && (
+                      <SlideItem
+                        key={project.id}
+                        project={project}
+                        index={i}
+                        isLoaded={loadedImages.has(i)}
+                        onLoad={handleImageLoad}
+                      />
+                    )
                   ))}
                 </CarouselContent>
               </Carousel>
