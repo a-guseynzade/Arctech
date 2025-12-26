@@ -1,29 +1,204 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, memo } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
+// ============================================================================
+// MEMOIZED SUB-COMPONENTS (UI Shell Pattern)
+// These components only re-render when their specific props change
+// ============================================================================
+
+/**
+ * Modal header with counter and close button
+ * Only re-renders when currentIndex or totalImages changes
+ */
+const ModalHeader = memo(function ModalHeader({ 
+  currentIndex, 
+  totalImages, 
+  onClose 
+}) {
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[104] flex items-center justify-between px-4 py-4 md:px-8">
+      {/* Image counter with background pill */}
+      <div className="bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
+        {currentIndex + 1} / {totalImages}
+      </div>
+      
+      {/* Close button */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="bg-black/60 backdrop-blur-sm hover:bg-white/20 text-white h-10 w-10 rounded-full"
+        onClick={onClose}
+      >
+        <X className="h-5 w-5" />
+      </Button>
+    </div>
+  );
+});
+
+/**
+ * Navigation buttons (prev/next arrows)
+ * Decoupled from content loading state to prevent layout shifts
+ */
+const NavigationButtons = memo(function NavigationButtons({ 
+  onPrev, 
+  onNext 
+}) {
+  return (
+    <>
+      {/* Previous button */}
+      <button
+        onClick={onPrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center cursor-pointer bg-white/15 backdrop-blur-md border border-white/20 hover:bg-white/30 hover:scale-105 transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="h-6 w-6 md:h-7 md:w-7 text-white" />
+      </button>
+
+      {/* Next button */}
+      <button
+        onClick={onNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center cursor-pointer bg-white/15 backdrop-blur-md border border-white/20 hover:bg-white/30 hover:scale-105 transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="h-6 w-6 md:h-7 md:w-7 text-white" />
+      </button>
+    </>
+  );
+});
+
+/**
+ * Individual slide item with glassmorphism effect
+ * Only re-renders when its own loaded state or image changes
+ */
+const SlideItem = memo(function SlideItem({ 
+  project, 
+  isLoaded, 
+  onLoad 
+}) {
+  return (
+    <CarouselItem className="flex items-center justify-center">
+      {/* Glassmorphism container with blurred background */}
+      <div className="relative w-[80vw] h-[75vh] max-w-5xl rounded-2xl overflow-hidden">
+        {/* Blurred background layer - uses current image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: `url(${project.image})`,
+            filter: 'blur(40px) brightness(0.6)',
+            transform: 'scale(1.2)'
+          }}
+        />
+        
+        {/* Dark overlay for better contrast */}
+        <div className="absolute inset-0 bg-black/30" />
+
+        {/* Foreground content layer */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+          {/* Loading skeleton */}
+          {!isLoaded && (
+            <Skeleton className="w-full h-full rounded-xl" />
+          )}
+          
+          {/* Sharp foreground image - flat, no shadow */}
+          <img
+            src={project.image}
+            alt={project.alt}
+            onLoad={onLoad}
+            className={cn(
+              "max-w-full max-h-full object-contain",
+              "transition-opacity duration-300",
+              isLoaded ? "opacity-100" : "opacity-0 absolute"
+            )}
+          />
+        </div>
+      </div>
+    </CarouselItem>
+  );
+});
+
+// ============================================================================
+// IMAGE PRELOADING UTILITY
+// Uses in-memory Image() constructor for better browser cache utilization
+// ============================================================================
+
+/**
+ * Preload an image into browser cache
+ * @param {string} src - Image source URL
+ * @returns {Promise<void>}
+ */
+const preloadImage = (src) => {
+  if (!src) return Promise.resolve();
+  
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = resolve;
+    img.onerror = resolve; // Don't block on errors
+    img.src = src;
+  });
+};
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
+
 /**
  * Gallery Modal with optimized image slider
- * Features:
- * - Full-screen modal with carousel
- * - Prefetches prev/next images for smooth navigation
+ * 
+ * Performance Features:
+ * - Memoized sub-components (UI Shell pattern)
+ * - In-memory image preloading for smooth transitions
+ * - useCallback for stable handler references
  * - Keyboard navigation (arrows + escape)
- * - Click outside or X to close
+ * - Body scroll lock when open
+ * - State reset on close
+ * 
+ * @param {Object} props
+ * @param {Array} props.images - Array of project objects with image, alt, id
+ * @param {number} props.initialIndex - Starting slide index
+ * @param {boolean} props.open - Modal open state
+ * @param {Function} props.onClose - Close handler
  */
 export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [loadedImages, setLoadedImages] = useState(new Set());
   const [api, setApi] = useState(null);
+
+  // -------------------------------------------------------------------------
+  // MEMOIZED HANDLERS
+  // -------------------------------------------------------------------------
+  
+  const handleClose = useCallback(() => {
+    onClose();
+  }, [onClose]);
+
+  const handlePrev = useCallback(() => {
+    api?.scrollPrev();
+  }, [api]);
+
+  const handleNext = useCallback(() => {
+    api?.scrollNext();
+  }, [api]);
+
+  const handleImageLoad = useCallback((index) => {
+    setLoadedImages((prev) => new Set([...prev, index]));
+  }, []);
+
+  const handleOpenChange = useCallback((isOpen) => {
+    if (!isOpen) onClose();
+  }, [onClose]);
+
+  // -------------------------------------------------------------------------
+  // EFFECTS
+  // -------------------------------------------------------------------------
 
   // Sync carousel with initialIndex when modal opens
   useEffect(() => {
@@ -45,22 +220,10 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
     return () => api.off("select", onSelect);
   }, [api]);
 
-  // Prefetch adjacent images
+  // Prefetch adjacent images using in-memory Image() constructor
   useEffect(() => {
     if (!open || images.length === 0) return;
 
-    const prefetchImage = (src) => {
-      if (!src) return;
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "image";
-      link.href = src;
-      document.head.appendChild(link);
-      return link;
-    };
-
-    const links = [];
-    
     // Prefetch current, prev, and next
     const indicesToPrefetch = [
       currentIndex,
@@ -70,31 +233,20 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
 
     indicesToPrefetch.forEach((i) => {
       if (!loadedImages.has(i)) {
-        const link = prefetchImage(images[i]?.image);
-        if (link) links.push(link);
+        preloadImage(images[i]?.image);
       }
     });
-
-    // Cleanup preload links on unmount
-    return () => {
-      links.forEach((link) => link.remove());
-    };
   }, [open, currentIndex, images, loadedImages]);
-
-  // Mark image as loaded
-  const handleImageLoad = useCallback((index) => {
-    setLoadedImages((prev) => new Set([...prev, index]));
-  }, []);
 
   // Keyboard navigation
   useEffect(() => {
     if (!open) return;
 
     const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft" && api) {
-        api.scrollPrev();
-      } else if (e.key === "ArrowRight" && api) {
-        api.scrollNext();
+      if (e.key === "ArrowLeft") {
+        api?.scrollPrev();
+      } else if (e.key === "ArrowRight") {
+        api?.scrollNext();
       }
     };
 
@@ -102,49 +254,59 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open, api]);
 
+  // Body scroll lock when modal is open
+  useEffect(() => {
+    if (open) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [open]);
+
+  // Reset loaded images state when modal closes
+  useEffect(() => {
+    if (!open) {
+      setLoadedImages(new Set());
+    }
+  }, [open]);
+
+  // -------------------------------------------------------------------------
+  // RENDER
+  // -------------------------------------------------------------------------
+
   if (!images || images.length === 0) return null;
 
   return (
-    <DialogPrimitive.Root open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
+    <DialogPrimitive.Root open={open} onOpenChange={handleOpenChange}>
       <DialogPrimitive.Portal>
-        {/* Full-screen overlay */}
+        {/* Transparent overlay for click-outside-to-close behavior */}
         <DialogPrimitive.Overlay 
-          className="fixed inset-0 z-[100] bg-black/95 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+          className="fixed inset-0 z-[100] bg-transparent"
         />
         
         {/* Full-screen content container */}
         <DialogPrimitive.Content 
-          className="fixed inset-0 z-[101] flex items-center justify-center outline-none p-4 md:p-8"
+          className="fixed inset-0 z-[101] outline-none"
           onPointerDownOutside={(e) => e.preventDefault()}
         >
           {/* Hidden title for accessibility */}
           <DialogPrimitive.Title className="sr-only">
             Gallery
           </DialogPrimitive.Title>
-          
-          {/* Main container with max width - controls positioned relative to this */}
-          <div className="relative w-full max-w-5xl mx-auto">
-            
-            {/* Top controls - positioned relative to image container */}
-            <div className="absolute -top-12 md:-top-14 left-0 right-0 flex items-center justify-between z-10">
-              {/* Image counter with background pill */}
-              <div className="bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
-                {currentIndex + 1} / {images.length}
-              </div>
-              
-              {/* Close button - prominent with background */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="bg-black/60 backdrop-blur-sm hover:bg-white/20 text-white h-10 w-10 rounded-full"
-                onClick={onClose}
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
 
-            {/* Carousel wrapper with space for desktop arrows */}
-            <div className="md:px-20">
+          {/* Memoized header - only re-renders on index change */}
+          <ModalHeader 
+            currentIndex={currentIndex}
+            totalImages={images.length}
+            onClose={handleClose}
+          />
+
+          {/* Main content area - centered */}
+          <div className="fixed inset-0 z-[102] flex items-center justify-center py-16 md:py-20">
+            {/* Wrapper for carousel and fixed navigation buttons */}
+            <div className="relative w-full max-w-5xl flex items-center justify-center">
               <Carousel
                 setApi={setApi}
                 className="w-full"
@@ -155,54 +317,21 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
               >
                 <CarouselContent>
                   {images.map((project, index) => (
-                    <CarouselItem
+                    <SlideItem
                       key={project.id}
-                      className="flex items-center justify-center"
-                    >
-                      <div className="relative w-full flex items-center justify-center">
-                        {/* Loading skeleton */}
-                        {!loadedImages.has(index) && (
-                          <Skeleton className="w-full aspect-video max-h-[70vh] rounded-lg" />
-                        )}
-                        
-                        {/* Full-size image with proper containment */}
-                        <img
-                          src={project.image}
-                          alt={project.alt}
-                          onLoad={() => handleImageLoad(index)}
-                          className={cn(
-                            "max-w-full max-h-[70vh] w-auto h-auto object-contain rounded-lg shadow-2xl",
-                            "transition-opacity duration-300",
-                            loadedImages.has(index) ? "opacity-100" : "opacity-0"
-                          )}
-                        />
-                      </div>
-                    </CarouselItem>
+                      project={project}
+                      isLoaded={loadedImages.has(index)}
+                      onLoad={() => handleImageLoad(index)}
+                    />
                   ))}
                 </CarouselContent>
-
-                {/* Navigation arrows - Responsive positioning */}
-                {/* Mobile: inside image with overlay style */}
-                {/* Desktop: completely outside image container */}
-                <CarouselPrevious 
-                  className={cn(
-                    "h-12 w-12 md:h-14 md:w-14 shadow-xl",
-                    // Mobile: inside, overlay style
-                    "left-2 bg-black/50 hover:bg-black/70 text-white border-none",
-                    // Desktop: outside image container
-                    "md:left-0 md:-translate-x-full md:ml-[-1rem] md:bg-black/70 md:hover:bg-black/90 md:border-2 md:border-white/30 md:hover:border-white/50"
-                  )}
-                />
-                <CarouselNext 
-                  className={cn(
-                    "h-12 w-12 md:h-14 md:w-14 shadow-xl",
-                    // Mobile: inside, overlay style
-                    "right-2 bg-black/50 hover:bg-black/70 text-white border-none",
-                    // Desktop: outside image container
-                    "md:right-0 md:translate-x-full md:mr-[-1rem] md:bg-black/70 md:hover:bg-black/90 md:border-2 md:border-white/30 md:hover:border-white/50"
-                  )}
-                />
               </Carousel>
+
+              {/* Memoized navigation - never re-renders unless handlers change */}
+              <NavigationButtons 
+                onPrev={handlePrev}
+                onNext={handleNext}
+              />
             </div>
           </div>
         </DialogPrimitive.Content>
@@ -212,4 +341,3 @@ export function GalleryModal({ images, initialIndex = 0, open, onClose }) {
 }
 
 export default GalleryModal;
-
