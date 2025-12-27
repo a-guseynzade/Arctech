@@ -28,7 +28,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <a href="/" className="inline-block mb-4">
-              <span className="text-2xl font-bold text-[var(--orange)] uppercase tracking-wider">
+              <span className="text-2xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
                 {companyInfo.name}
               </span>
             </a>
@@ -43,7 +43,7 @@ export default function Footer() {
                   <a
                     key={social}
                     href="#"
-                    className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--orange)] transition-colors duration-200"
+                    className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--primary-brand)] transition-colors duration-200"
                   >
                     <Icon className="w-4 h-4 text-white" />
                   </a>
@@ -60,19 +60,19 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/60 hover:text-[var(--orange)] transition-colors text-sm"
+                    className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href="#" className="text-white/60 hover:text-[var(--orange)] transition-colors text-sm">
+                <a href="#" className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-[var(--orange)] transition-colors text-sm">
+                <a href="#" className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm">
                   Privacy Policy
                 </a>
               </li>
@@ -110,7 +110,7 @@ export default function Footer() {
                 placeholder="Enter your email"
                 className="bg-white/10 border-white/20 text-white placeholder:text-white/40 flex-1"
               />
-              <Button className="bg-[var(--orange)] hover:bg-[var(--orange-dark)] px-3">
+              <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] px-3">
                 <Send className="w-4 h-4" />
               </Button>
             </div>
@@ -126,10 +126,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-white/50 hover:text-[var(--orange)] text-sm transition-colors">
+            <a href="#" className="text-white/50 hover:text-[var(--primary-brand)] text-sm transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="text-white/50 hover:text-[var(--orange)] text-sm transition-colors">
+            <a href="#" className="text-white/50 hover:text-[var(--primary-brand)] text-sm transition-colors">
               Privacy Policy
             </a>
           </div>

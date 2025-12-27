@@ -2,19 +2,7 @@
 // ARCTECH CONSTRUCTION COMPANY - LANDING DATA
 // ============================================
 
-// Category gallery images
-import arch001 from "@/assets/Architecture/Architecture001.jpg";
-import arch002 from "@/assets/Architecture/Architecture002.jpg";
-import arch003 from "@/assets/Architecture/Architecture003.jpg";
-import build001 from "@/assets/Building/Building001.jpg";
-import build002 from "@/assets/Building/Building002.jpg";
-import build003 from "@/assets/Building/Building003.jpg";
-import interior001 from "@/assets/Interior/Interior001.jpg";
-import interior002 from "@/assets/Interior/Interior002.jpg";
-import interior003 from "@/assets/Interior/Interior003.jpg";
-import const001 from "@/assets/Construction/Construction001.jpg";
-import const002 from "@/assets/Construction/Construction002.jpg";
-import const003 from "@/assets/Construction/Construction003.jpg";
+import { createProject } from "@/lib/gallery-utils";
 
 // ============================================
 // NAVIGATION & COMPANY INFO
@@ -23,51 +11,47 @@ import const003 from "@/assets/Construction/Construction003.jpg";
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
 ];
 
 export const companyInfo = {
   name: "Arctech",
-  tagline: "Building Tomorrow's Landmarks",
+  tagline: "Build Your Dreams",
   description:
     "We provide exceptional architectural design, construction, and building maintenance services. With decades of experience and a commitment to excellence, we transform visions into reality.",
 };
 
 export const languages = [
   { code: "en", label: "English" },
-  { code: "es", label: "Español" },
-  { code: "fr", label: "Français" },
-  { code: "de", label: "Deutsch" },
+  { code: "tr", label: "Türkçe" },
 ];
 
 // ============================================
 // HERO SECTION
 // ============================================
 
-export const stats = [
-  { value: 25, suffix: "+", label: "Years of", sublabel: "Experience" },
-  { value: 378, suffix: "+", label: "Projects", sublabel: "Complete" },
-  { value: 69, suffix: "+", label: "Winning", sublabel: "Global Awards" },
-];
-
 // ============================================
-// EXPERIENCE SECTION
+// CORE VALUES SECTION
 // ============================================
 
-export const experienceData = {
-  years: 25,
-  title: "of experience!",
-  paragraphs: [
-    "We have a team of experienced professionals who have been in the industry for over 25 years. Our contractors possess a wealth of knowledge and skills acquired through decades of hands-on work, making them true experts in their field.",
-    "With 25 years of experience, our contractors have developed a deep understanding of industry standards and regulations. We ensure that all our projects comply with the latest safety and building codes, and that the final product meets or exceeds our client's expectations.",
-  ],
-  founder: {
-    name: "John Morrison",
-    title: "Founder & CEO",
-    signature: "John M.",
+export const chooseUsValues= [
+  {
+    icon: "Target",
+    title: "Best Quality",
+    description: "We never compromise on quality, ensuring every project meets the highest standards.",
   },
-};
+  {
+    icon: "Handshake",
+    title: "Trust & Transparency",
+    description: "Building lasting relationships through honest communication and reliable partnerships.",
+  },
+  {
+    icon: "Lightbulb",
+    title: "Innovation",
+    description: "Embracing modern techniques and technologies to deliver cutting-edge solutions.",
+  },
+];
 
 // ============================================
 // PROCESS STEPS
@@ -112,96 +96,27 @@ export const projectCategories = [
   "Interior",
 ];
 
-// Category gallery images mapped by category
+// Projects with auto-generated image paths via createProject utility
 export const projects = [
   // Architecture
-  {
-    id: "arch-1",
-    title: "Skyview Tower",
-    category: "Architecture",
-    description: "Modern architectural design",
-    image: arch001,
-  },
-  {
-    id: "arch-2",
-    title: "Modern Office Complex",
-    category: "Architecture",
-    description: "Contemporary architecture",
-    image: arch002,
-  },
-  {
-    id: "arch-3",
-    title: "Innovation Hub",
-    category: "Architecture",
-    description: "Innovative architectural project",
-    image: arch003,
-  },
+  createProject("Architecture", 1),
+  createProject("Architecture", 2),
+  createProject("Architecture", 3),
+  
   // Building
-  {
-    id: "build-1",
-    title: "The Fallingwater House",
-    category: "Building",
-    description: "Commercial building project",
-    image: build001,
-  },
-  {
-    id: "build-2",
-    title: "Urban Heights",
-    category: "Building",
-    description: "Residential building complex",
-    image: build002,
-  },
-  {
-    id: "build-3",
-    title: "Metro Plaza",
-    category: "Building",
-    description: "Modern building construction",
-    image: build003,
-  },
+  createProject("Building", 1),
+  createProject("Building", 2),
+  createProject("Building", 3),
+  
   // Interior
-  {
-    id: "int-1",
-    title: "The Orange Apartments",
-    category: "Interior",
-    description: "Modern interior design",
-    image: interior001,
-  },
-  {
-    id: "int-2",
-    title: "Luxury Villa Estate",
-    category: "Interior",
-    description: "Luxury interior styling",
-    image: interior002,
-  },
-  {
-    id: "int-3",
-    title: "Executive Lounge",
-    category: "Interior",
-    description: "Contemporary interior space",
-    image: interior003,
-  },
+  createProject("Interior", 1),
+  createProject("Interior", 2),
+  createProject("Interior", 3),
+  
   // Construction
-  {
-    id: "const-1",
-    title: "Industrial Warehouse",
-    category: "Construction",
-    description: "Active construction site",
-    image: const001,
-  },
-  {
-    id: "const-2",
-    title: "Harbor Bridge",
-    category: "Construction",
-    description: "Building under construction",
-    image: const002,
-  },
-  {
-    id: "const-3",
-    title: "Central Station",
-    category: "Construction",
-    description: "Construction progress",
-    image: const003,
-  },
+  createProject("Construction", 1),
+  createProject("Construction", 2),
+  createProject("Construction", 3),
 ];
 
 // ============================================
@@ -215,13 +130,6 @@ export const services = [
   { value: "interior", label: "Interior Design" },
   { value: "consulting", label: "Consulting" },
   { value: "maintenance", label: "Building Maintenance" },
-];
-
-export const ctaFeatures = [
-  "Professional Staff",
-  "100% Satisfaction",
-  "Accurate Testing",
-  "Transparent Pricing",
 ];
 
 export const contactInfo = {

@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { navLinks, languages, companyInfo } from "@/features/landing/data/landing-data";
+import logo from "@/assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,9 @@ export default function Header() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <span className="text-xl lg:text-2xl font-bold text-[var(--orange)] uppercase tracking-wider">
+          <a href="/" className="flex items-center gap-3">
+            <img src={logo} alt="Arctech Logo" className="h-20 lg:h-24 w-auto" />
+            <span className="text-xl lg:text-2xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
               {companyInfo.name}
             </span>
           </a>
@@ -30,7 +32,7 @@ export default function Header() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-white/80 hover:text-[var(--orange)] transition-colors duration-200 text-sm font-medium"
+                className="text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-sm font-medium"
               >
                 {link.label}
               </a>
@@ -51,7 +53,7 @@ export default function Header() {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    className="text-white hover:bg-[var(--orange)]/20 cursor-pointer"
+                    className="text-white hover:bg-[var(--primary-brand)]/20 cursor-pointer"
                   >
                     {lang.label}
                   </DropdownMenuItem>
@@ -59,7 +61,7 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button className="bg-[var(--orange)] hover:bg-[var(--orange-dark)] text-white font-semibold px-6">
+            <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold px-6">
               Contact Us
             </Button>
           </div>
@@ -79,14 +81,14 @@ export default function Header() {
                       key={link.label}
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="text-white/80 hover:text-[var(--orange)] transition-colors text-lg font-medium py-2"
+                      className="text-white/80 hover:text-[var(--primary-brand)] transition-colors text-lg font-medium py-2"
                     >
                       {link.label}
                     </a>
                   ))}
                 </nav>
                 <div className="mt-auto pb-8">
-                  <Button className="w-full bg-[var(--orange)] hover:bg-[var(--orange-dark)] text-white font-semibold">
+                  <Button className="w-full bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold">
                     Contact Us
                   </Button>
                 </div>
