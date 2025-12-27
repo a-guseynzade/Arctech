@@ -63,8 +63,7 @@ export default function FeaturedProjects() {
             >
               <div className="relative overflow-hidden h-64">
                 <OptimizedImage
-                  src={project.image}
-                  thumbnail={project.thumbnail}
+                  src={project.thumbnail}
                   alt={project.alt}
                   className="w-full h-full"
                   imgClassName="group-hover:scale-110 transition-transform duration-500"
