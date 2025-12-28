@@ -1,9 +1,9 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
 import { OptimizedImage } from "@/components/common/OptimizedImage";
-import { projects, projectCategories } from "@/features/landing/data/landing-data";
+import { projects, allProjects, projectCategories } from "@/features/landing/data/landing-data";
 
 // Lazy load GalleryModal - only loads when user opens it
 const GalleryModal = lazy(() => import("./GalleryModal"));
@@ -13,20 +13,20 @@ export default function FeaturedProjects() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const filteredProjects =
-    activeCategory === "All Works"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+  const isAllWorks = activeCategory === "All Works";
+  const categoryKey = activeCategory.toLowerCase();
+  
+  const previewProjects = isAllWorks ? projects.interior : projects[categoryKey];
+  const galleryImages = isAllWorks ? allProjects : projects[categoryKey];
 
-  // Memoized handlers for stable references
-  const handleImageClick = useCallback((index) => {
+  const handleImageClick = (index) => {
     setSelectedIndex(index);
     setModalOpen(true);
-  }, []);
+  };
 
-  const handleModalClose = useCallback(() => {
+  const handleModalClose = () => {
     setModalOpen(false);
-  }, []);
+  };
 
   return (
     <section id="projects" className="py-16 lg:py-24 bg-white">
@@ -55,7 +55,7 @@ export default function FeaturedProjects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.slice(0, 3).map((project, index) => (
+          {previewProjects.map((project, index) => (
             <Card
               key={project.id}
               onClick={() => handleImageClick(index)}
@@ -86,10 +86,10 @@ export default function FeaturedProjects() {
         </div>
       </div>
 
-      {/* Gallery Modal - Lazy loaded with Suspense */}
+      {/* Gallery Modal */}
       <Suspense fallback={null}>
         <GalleryModal
-          images={filteredProjects}
+          images={galleryImages}
           initialIndex={selectedIndex}
           open={modalOpen}
           onClose={handleModalClose}
@@ -98,4 +98,3 @@ export default function FeaturedProjects() {
     </section>
   );
 }
-
