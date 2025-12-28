@@ -15,8 +15,10 @@ export default function FeaturedProjects() {
 
   const isAllWorks = activeCategory === "All Works";
   const categoryKey = activeCategory.toLowerCase();
-  
-  const previewProjects = isAllWorks ? projects.interior : projects[categoryKey];
+
+  const PREVIEW_LIMIT = 3;
+  const fullCategoryProjects = isAllWorks ? projects.interior : projects[categoryKey];
+  const previewProjects = fullCategoryProjects.slice(0, PREVIEW_LIMIT);
   const galleryImages = isAllWorks ? allProjects : projects[categoryKey];
 
   const handleImageClick = (index) => {

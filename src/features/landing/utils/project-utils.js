@@ -15,27 +15,26 @@ export function getGalleryImagePath(category, index, variant = "full") {
 }
 
 /**
- * Creates a project object with image paths
+ * Generates all projects for a category based on available images
  * @param {string} category - Category name
- * @param {number} index - Project index
- * @returns {{ id: string, category: string, alt: string, image: string, thumbnail: string }}
+ * @returns {Array<{ id: string, category: string, alt: string, image: string, thumbnail: string }>}
  */
-export function createProject(category, index) {
-  return {
-    id: `${category.toLowerCase()}-${index}`,
-    category,
-    alt: `${category} project ${index}`,
-    image: getGalleryImagePath(category, index, "full"),
-    thumbnail: getGalleryImagePath(category, index, "thumb"),
-  };
+export function generateProjects(category) {
+  const galleryThumbnails = import.meta.glob('/public/gallery/**/*_thumb.webp');
+  const pattern = `/public/gallery/${category}/`;
+  const count = Object.keys(galleryThumbnails).filter(path => path.startsWith(pattern)).length;
+
+  return Array.from({ length: count }, (_, i) => {
+    const index = i + 1;
+    const padded = String(index).padStart(3, "0");
+    
+    return {
+      id: `${category.toLowerCase()}-${index}`,
+      category,
+      alt: `${category} project ${index}`,
+      image: `/gallery/${category}/${category}${padded}_full.webp`,
+      thumbnail: `/gallery/${category}/${category}${padded}_thumb.webp`,
+    };
+  });
 }
 
-/**
- * Generates N projects for a category
- * @param {string} category - Category name
- * @param {number} count - Number of projects to generate
- * @returns {Array} Array of project objects
- */
-export function generateProjects(category, count = 3) {
-  return Array.from({ length: count }, (_, i) => createProject(category, i + 1));
-}

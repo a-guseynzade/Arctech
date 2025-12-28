@@ -88,8 +88,6 @@ export const projectCategories = [
   "Interior",
 ];
 
-
-
 // Projects by category
 export const projects = {
   interior: generateProjects("Interior"),
