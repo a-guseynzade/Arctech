@@ -54,7 +54,7 @@ function parseArgs() {
 
 function printHelp() {
   console.log(`
-📷 Image Optimization Script
+Image Optimization Script
 
 Usage:
   node optimize-images.js [options] [files...]
@@ -165,7 +165,7 @@ async function main() {
   const generateThumbs = !config.noThumbs;
 
   console.log('═'.repeat(50));
-  console.log('🖼️  Image Optimization Script');
+  console.log('Image Optimization Script');
   console.log('═'.repeat(50));
 
   let imageFiles = [];
@@ -186,18 +186,18 @@ async function main() {
           subDir: '.',
         });
       } else {
-        console.warn(`⚠️  Skipping unsupported file: ${filePath}`);
+        console.warn(`Skipping unsupported file: ${filePath}`);
       }
     }
 
-    console.log(`📂 Output: ${outputDir}`);
-    console.log(`📷 Files:  ${config.files.length} specified`);
+    console.log(`Output: ${outputDir}`);
+    console.log(`Files:  ${config.files.length} specified`);
   } else {
     // Mode: Default (process entire directory)
     outputDir = config.outputDir || DEFAULT_OUTPUT_DIR;
 
-    console.log(`📂 Input:  ${DEFAULT_INPUT_DIR}`);
-    console.log(`📂 Output: ${outputDir}`);
+    console.log(`Input:  ${DEFAULT_INPUT_DIR}`);
+    console.log(`Output: ${outputDir}`);
 
     imageFiles = await getImageFiles(DEFAULT_INPUT_DIR);
   }
@@ -205,11 +205,11 @@ async function main() {
   console.log('─'.repeat(50));
 
   if (imageFiles.length === 0) {
-    console.log('⚠️  No images found to process.');
+    console.log('No images found to process.');
     return;
   }
 
-  console.log(`📷 Found ${imageFiles.length} image(s) to process\n`);
+  console.log(`Found ${imageFiles.length} image(s) to process\n`);
 
   // Ensure output directory exists
   await ensureDir(outputDir);
@@ -217,7 +217,7 @@ async function main() {
   // Process all images
   const results = [];
   for (const imageInfo of imageFiles) {
-    console.log(`\n📸 Processing: ${imageInfo.relativePath}`);
+    console.log(`Processing: ${imageInfo.relativePath}`);
     const result = await processImage(imageInfo, outputDir, config.quality, generateThumbs);
     results.push(result);
   }
@@ -228,14 +228,14 @@ async function main() {
   const filesCreated = generateThumbs ? successful * 2 : successful;
 
   console.log('\n' + '═'.repeat(50));
-  console.log('📊 Summary');
+  console.log('Summary');
   console.log('─'.repeat(50));
-  console.log(`✅ Successful: ${successful} images (${filesCreated} files created)`);
+  console.log(`Successful: ${successful} images (${filesCreated} files created)`);
   if (failed > 0) {
-    console.log(`❌ Failed: ${failed} images`);
+    console.log(`Failed: ${failed} images`);
   }
   console.log('═'.repeat(50));
-  console.log('🎉 Optimization complete!');
+  console.log('Optimization complete!');
 }
 
 main().catch((err) => {
