@@ -16,7 +16,7 @@ export default function FeaturedProjects() {
   const isAllWorks = activeCategory === "All Works";
   const categoryKey = activeCategory.toLowerCase();
 
-  const PREVIEW_LIMIT = 3;
+  const PREVIEW_LIMIT = 6;
   const fullCategoryProjects = isAllWorks ? projects.interior : projects[categoryKey];
   const previewProjects = fullCategoryProjects.slice(0, PREVIEW_LIMIT);
   const galleryImages = isAllWorks ? allProjects : projects[categoryKey];
@@ -61,9 +61,9 @@ export default function FeaturedProjects() {
             <Card
               key={project.id}
               onClick={() => handleImageClick(index)}
-              className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              className="group overflow-hidden border-none bg-transparent p-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer rounded-2xl"
             >
-              <div className="relative overflow-hidden h-64">
+              <div className="relative overflow-hidden h-56 md:h-72 rounded-2xl">
                 <OptimizedImage
                   src={project.thumbnail}
                   alt={project.alt}

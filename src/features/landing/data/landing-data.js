@@ -9,9 +9,9 @@ import { generateProjects } from "@/features/landing/utils/project-utils";
 // ============================================
 
 export const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
+  { label: "Home", href: "#" },
   { label: "Projects", href: "#projects" },
+  { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
 ];
 
