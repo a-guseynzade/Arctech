@@ -162,3 +162,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix for fixed header layout shift when Radix scroll-lock is active */
+body[data-scroll-locked] header[class*="fixed"] {
+  margin-right: var(--removed-body-scroll-bar-size, 0px);
+}
