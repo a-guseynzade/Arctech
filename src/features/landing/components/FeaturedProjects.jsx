@@ -2,7 +2,6 @@ import { useState, lazy, Suspense } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
-import { OptimizedImage } from "@/components/common/OptimizedImage";
 import { projects, allProjects, projectCategories } from "@/features/landing/data/landing-data";
 
 // Lazy load GalleryModal - only loads when user opens it
@@ -64,11 +63,12 @@ export default function FeaturedProjects() {
               className="group overflow-hidden border-none bg-transparent p-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer rounded-2xl"
             >
               <div className="relative overflow-hidden h-56 md:h-72 rounded-2xl">
-                <OptimizedImage
+                <img
                   src={project.thumbnail}
                   alt={project.alt}
-                  className="w-full h-full"
-                  imgClassName="group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>

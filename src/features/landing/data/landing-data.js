@@ -2,7 +2,7 @@
 // ARCTECH CONSTRUCTION COMPANY - LANDING DATA
 // ============================================
 
-import { generateProjects } from "@/features/landing/utils/project-utils";
+import { generateGalleryProjects } from "@/features/landing/utils/gallery-data-generator";
 
 // ============================================
 // NAVIGATION & COMPANY INFO
@@ -90,10 +90,10 @@ export const projectCategories = [
 
 // Projects by category
 export const projects = {
-  interior: generateProjects("Interior"),
-  architecture: generateProjects("Architecture"),
-  building: generateProjects("Building"),
-  construction: generateProjects("Construction"),
+  interior: generateGalleryProjects("Interior"),
+  architecture: generateGalleryProjects("Architecture"),
+  building: generateGalleryProjects("Building"),
+  construction: generateGalleryProjects("Construction"),
 };
 
 // Pre-computed array of ALL projects (for "All Works" gallery modal)

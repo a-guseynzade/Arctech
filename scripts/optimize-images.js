@@ -1,17 +1,22 @@
+// ============================================
+// IMAGE OPTIMIZATION SCRIPT
+// ============================================
+// Converts images to WebP format with full + thumbnail versions
+
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.join(__dirname, '..');
 
 // ============================================
-// CONFIGURATION (Defaults)
+// CONFIGURATION
 // ============================================
-const DEFAULT_INPUT_DIR = path.join(__dirname, 'src/assets/Projects');
-const DEFAULT_OUTPUT_DIR = path.join(__dirname, 'public/gallery');
+const DEFAULT_INPUT_DIR = path.join(ROOT_DIR, 'raw/projects');
+const DEFAULT_OUTPUT_DIR = path.join(ROOT_DIR, 'public/gallery');
 
 const FULL_QUALITY = 80;
 const THUMB_QUALITY = 70;
@@ -25,17 +30,17 @@ const SUPPORTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.avif'
 function parseArgs() {
   const args = process.argv.slice(2);
   const config = {
-    files: [],           // Specific files to process
-    outputDir: null,     // Custom output directory
+    files: [],
+    outputDir: null,
     quality: FULL_QUALITY,
-    noThumbs: false,     // Skip thumbnail generation
+    noThumbs: false,
   };
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
 
     if (arg === '--output' || arg === '-o') {
-      config.outputDir = path.resolve(__dirname, args[++i]);
+      config.outputDir = path.resolve(ROOT_DIR, args[++i]);
     } else if (arg === '--quality' || arg === '-q') {
       config.quality = parseInt(args[++i], 10);
     } else if (arg === '--no-thumbs') {
@@ -44,8 +49,7 @@ function parseArgs() {
       printHelp();
       process.exit(0);
     } else if (!arg.startsWith('-')) {
-      // Treat as input file
-      config.files.push(path.resolve(__dirname, arg));
+      config.files.push(path.resolve(ROOT_DIR, arg));
     }
   }
 
@@ -57,7 +61,7 @@ function printHelp() {
 Image Optimization Script
 
 Usage:
-  node optimize-images.js [options] [files...]
+  node scripts/optimize-images.js [options] [files...]
 
 Options:
   -o, --output <dir>   Output directory (default: public/gallery)
@@ -66,17 +70,14 @@ Options:
   -h, --help           Show this help message
 
 Examples:
-  # Default: Process all images from src/assets/Projects → public/gallery
-  node optimize-images.js
+  # Default: Process all images from raw/projects → public/gallery
+  node scripts/optimize-images.js
 
   # Process specific files to a custom output directory
-  node optimize-images.js src/assets/hero-bg.png -o src/assets
+  node scripts/optimize-images.js raw/hero.png -o src/assets
 
-  # Process multiple files with custom quality
-  node optimize-images.js file1.jpg file2.png -q 90 -o dist/images
-
-  # Process with no thumbnails
-  node optimize-images.js --no-thumbs
+  # Process with custom quality and no thumbnails
+  node scripts/optimize-images.js --no-thumbs -q 90
 `);
 }
 
@@ -125,21 +126,18 @@ async function getImageFiles(dir, baseDir = dir) {
 async function processImage(imageInfo, outputDir, quality, generateThumbs) {
   const { fullPath, name, subDir } = imageInfo;
 
-  // Create output subdirectory if needed
   const outputSubDir = subDir !== '.' ? path.join(outputDir, subDir) : outputDir;
   await ensureDir(outputSubDir);
 
   const fullOutputPath = path.join(outputSubDir, `${name}_full.webp`);
 
   try {
-    // Create full version
     await sharp(fullPath)
       .webp({ quality })
       .toFile(fullOutputPath);
 
     console.log(`✓ Full:  ${path.relative(outputDir, fullOutputPath)}`);
 
-    // Create thumbnail version (if enabled)
     if (generateThumbs) {
       const thumbOutputPath = path.join(outputSubDir, `${name}_thumb.webp`);
       await sharp(fullPath)
@@ -172,7 +170,6 @@ async function main() {
   let outputDir;
 
   if (config.files.length > 0) {
-    // Mode: Specific files
     outputDir = config.outputDir || path.dirname(config.files[0]);
 
     for (const filePath of config.files) {
@@ -193,7 +190,6 @@ async function main() {
     console.log(`Output: ${outputDir}`);
     console.log(`Files:  ${config.files.length} specified`);
   } else {
-    // Mode: Default (process entire directory)
     outputDir = config.outputDir || DEFAULT_OUTPUT_DIR;
 
     console.log(`Input:  ${DEFAULT_INPUT_DIR}`);
@@ -211,10 +207,8 @@ async function main() {
 
   console.log(`Found ${imageFiles.length} image(s) to process\n`);
 
-  // Ensure output directory exists
   await ensureDir(outputDir);
 
-  // Process all images
   const results = [];
   for (const imageInfo of imageFiles) {
     console.log(`Processing: ${imageInfo.relativePath}`);
@@ -222,18 +216,13 @@ async function main() {
     results.push(result);
   }
 
-  // Summary
   const successful = results.filter((r) => r.success).length;
   const failed = results.filter((r) => !r.success).length;
   const filesCreated = generateThumbs ? successful * 2 : successful;
 
   console.log('\n' + '═'.repeat(50));
-  console.log('Summary');
-  console.log('─'.repeat(50));
   console.log(`Successful: ${successful} images (${filesCreated} files created)`);
-  if (failed > 0) {
-    console.log(`Failed: ${failed} images`);
-  }
+  if (failed > 0) console.log(`Failed: ${failed} images`);
   console.log('═'.repeat(50));
   console.log('Optimization complete!');
 }

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Raw source images (processed → public/gallery)
+raw/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
