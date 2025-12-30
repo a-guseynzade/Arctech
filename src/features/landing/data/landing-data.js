@@ -2,16 +2,16 @@
 // ARCTECH CONSTRUCTION COMPANY - LANDING DATA
 // ============================================
 
-import { createProject } from "@/lib/gallery-utils";
+import { generateGalleryProjects } from "@/features/landing/utils/gallery-data-generator";
 
 // ============================================
 // NAVIGATION & COMPANY INFO
 // ============================================
 
 export const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
+  { label: "Home", href: "#" },
   { label: "Projects", href: "#projects" },
+  { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
 ];
 
@@ -26,14 +26,6 @@ export const languages = [
   { code: "en", label: "English" },
   { code: "tr", label: "Türkçe" },
 ];
-
-// ============================================
-// HERO SECTION
-// ============================================
-
-// ============================================
-// CORE VALUES SECTION
-// ============================================
 
 export const chooseUsValues= [
   {
@@ -96,28 +88,16 @@ export const projectCategories = [
   "Interior",
 ];
 
-// Projects with auto-generated image paths via createProject utility
-export const projects = [
-  // Architecture
-  createProject("Architecture", 1),
-  createProject("Architecture", 2),
-  createProject("Architecture", 3),
-  
-  // Building
-  createProject("Building", 1),
-  createProject("Building", 2),
-  createProject("Building", 3),
-  
-  // Interior
-  createProject("Interior", 1),
-  createProject("Interior", 2),
-  createProject("Interior", 3),
-  
-  // Construction
-  createProject("Construction", 1),
-  createProject("Construction", 2),
-  createProject("Construction", 3),
-];
+// Projects by category
+export const projects = {
+  interior: generateGalleryProjects("Interior"),
+  architecture: generateGalleryProjects("Architecture"),
+  building: generateGalleryProjects("Building"),
+  construction: generateGalleryProjects("Construction"),
+};
+
+// Pre-computed array of ALL projects (for "All Works" gallery modal)
+export const allProjects = Object.values(projects).flat();
 
 // ============================================
 // SERVICES & CONTACT

@@ -8,9 +8,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <WhyChooseUs />
-      <ProcessSteps />
       <FeaturedProjects />
+      <ProcessSteps />
+      <WhyChooseUs />
       <RequestQuote />
     </>
   );

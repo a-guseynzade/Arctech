@@ -1,5 +1,3 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   Linkedin,
@@ -7,7 +5,6 @@ import {
   Instagram,
   Twitter,
   Facebook,
-  Send,
 } from "lucide-react";
 import { navLinks, footerData, companyInfo } from "@/features/landing/data/landing-data";
 
@@ -52,32 +49,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* About Us Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">About Us</h4>
-            <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="#" className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm">
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
+
 
           {/* Office */}
           <div>
@@ -98,23 +70,23 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Newsletter */}
+          {/* About Us Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Subscribe To Our Newsletter</h4>
-            <p className="text-white/60 text-sm mb-4">
-              Get the latest updates and news about our services.
-            </p>
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/40 flex-1"
-              />
-              <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] px-3">
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
+            <h4 className="text-lg font-semibold mb-4">About Us</h4>
+            <ul className="space-y-3">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-white/60 hover:text-[var(--primary-brand)] transition-colors text-sm"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+
         </div>
       </div>
 
