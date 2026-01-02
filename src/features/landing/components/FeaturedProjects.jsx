@@ -2,15 +2,12 @@ import { useState, lazy, Suspense } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
 
-import { projects, allProjects, projectCategories } from "@/features/landing/data/landing-data";
-import { buildCategoryData } from "@/features/landing/utils/category-data-builder";
+import { projects, projectCategories, PREVIEW_LIMIT } from "@/features/landing/data/landing-data";
+import { categoryData } from "@/features/landing/lib/category-data";
 import { useImagePreloader } from "@/features/landing/hooks/useImagePreloader";
 import { ProjectCard } from "./ProjectCard";
 
 const GalleryModal = lazy(() => import("./GalleryModal"));
-
-const PREVIEW_LIMIT = 6;
-const categoryData = buildCategoryData(projects, allProjects, PREVIEW_LIMIT);
 
 export default function FeaturedProjects() {
   const [activeCategory, setActiveCategory] = useState("All Works");

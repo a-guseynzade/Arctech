@@ -2,7 +2,13 @@
 // ARCTECH CONSTRUCTION COMPANY - LANDING DATA
 // ============================================
 
-import { generateGalleryProjects } from "@/features/landing/utils/gallery-data-generator";
+import { generateGalleryProjects } from "../lib/gallery-data-generator";
+
+// ============================================
+// CONFIGURATION
+// ============================================
+
+export const PREVIEW_LIMIT = 6;
 
 // ============================================
 // NAVIGATION & COMPANY INFO
@@ -122,8 +128,7 @@ export const contactInfo = {
   },
   contact: {
     title: "Quick Contact",
-    email: "contact@arctech.com",
-    phone: "+1 (555) 123-4567",
+    lines: ["Email: contact@arctech.com", "Phone: +1 (555) 123-4567"],
   },
   hours: {
     title: "Opening Hours",

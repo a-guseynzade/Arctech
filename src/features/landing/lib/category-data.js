@@ -1,3 +1,5 @@
+import { projects, allProjects, PREVIEW_LIMIT } from "../data/landing-data";
+
 /**
  * Builds a category map for the FeaturedProjects component.
  * @param {Object} projectsData - The projects object (e.g., { interior: [], construction: [] }).
@@ -5,7 +7,7 @@
  * @param {number} previewLimit - Max number of projects to show in the preview grid.
  * @returns {Object} A map of category names to their preview and gallery data.
  */
-export function buildCategoryData(projectsData, allProjectsData, previewLimit) {
+function buildCategoryData(projectsData, allProjectsData, previewLimit) {
   const categories = {};
 
   // "All Works" category: preview should be a diverse sample, gallery is all projects
@@ -24,3 +26,6 @@ export function buildCategoryData(projectsData, allProjectsData, previewLimit) {
 
   return categories;
 }
+
+export const categoryData = buildCategoryData(projects, allProjects, PREVIEW_LIMIT);
+
