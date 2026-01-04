@@ -33,7 +33,7 @@ export default function FeaturedProjects() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)]">
-            Featured <span className="italic font-light">Project</span>
+            Featured <span className="text-[var(--primary-brand)]">Project</span>
           </h2>
 
           <Tabs value={activeCategory} onValueChange={setActiveCategory}>

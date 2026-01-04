@@ -61,9 +61,9 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold px-6">
-              Contact Us
-            </Button>
+            {/* <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold px-6">
+              Login
+            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}

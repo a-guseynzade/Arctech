@@ -18,14 +18,12 @@ export const navLinks = [
   { label: "Home", href: "#" },
   { label: "Projects", href: "#projects" },
   { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export const companyInfo = {
   name: "Arctech",
   tagline: "Build Your Dreams",
-  description:
-    "We provide exceptional architectural design, construction, and building maintenance services. With decades of experience and a commitment to excellence, we transform visions into reality.",
 };
 
 export const languages = [
@@ -143,18 +141,5 @@ export const contactInfo = {
 export const footerData = {
   description:
     "We have the confidence to provide the best service for you, with the support of Professional and Certified HR that we currently have and the high-quality materials we use and structured work techniques, we will be able to realize timely completion of work.",
-  office: {
-    title: "Office",
-    lines: [
-      "125 Innovation Drive, Suite 400",
-      "New York, NY 10001",
-      "United States",
-    ],
-  },
-  contact: {
-    title: "Contact",
-    email: "contact@arctech.com",
-    phone: "+1 (555) 123-4567",
-  },
   socials: ["linkedin", "youtube", "instagram", "twitter", "facebook"],
 };

@@ -12,10 +12,12 @@ dist
 dist-ssr
 *.local
 
-# Raw source images (processed → public/gallery)
+# Raw source images
 raw/
 
 # Editor directories and files
+.agent
+.cursor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -25,3 +27,5 @@ raw/
 *.njsproj
 *.sln
 *.sw?
+
+.gitignore

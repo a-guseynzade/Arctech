@@ -12,7 +12,8 @@ function buildCategoryData(projectsData, allProjectsData, previewLimit) {
 
   // "All Works" category: preview should be a diverse sample, gallery is all projects
   categories["All Works"] = {
-    previewProjects: projectsData.interior.slice(0, previewLimit),
+    previewProjects: [...projectsData.interior.slice(0, previewLimit / 2),
+                      ...projectsData.building.slice(0, previewLimit / 2)],
     galleryImages: allProjectsData,
   };
 
