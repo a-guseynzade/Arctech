@@ -42,11 +42,6 @@ export const chooseUsValues= [
     title: "Trust & Transparency",
     description: "Building lasting relationships through honest communication and reliable partnerships.",
   },
-  {
-    icon: "Lightbulb",
-    title: "Innovation",
-    description: "Embracing modern techniques and technologies to deliver cutting-edge solutions.",
-  },
 ];
 
 // ============================================

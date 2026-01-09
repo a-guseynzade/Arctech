@@ -2,14 +2,12 @@ import { chooseUsValues } from "@/features/landing/data/landing-data";
 import {
   Target,
   Handshake,
-  Lightbulb,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const iconMap = {
   Target,
   Handshake,
-  Lightbulb,
 };
 
 export default function WhyChooseUs() {
