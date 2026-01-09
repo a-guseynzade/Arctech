@@ -12,12 +12,7 @@ dist
 dist-ssr
 *.local
 
-# Raw source images
-raw/
-
 # Editor directories and files
-.agent
-.cursor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -28,4 +23,9 @@ raw/
 *.sln
 *.sw?
 
+#
+.agent
+.cursor
+raw/
+scripts
 .gitignore
