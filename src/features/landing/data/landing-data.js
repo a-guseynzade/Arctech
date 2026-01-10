@@ -31,16 +31,19 @@ export const languages = [
   { code: "tr", label: "Türkçe" },
 ];
 
-export const chooseUsValues= [
-  {
-    icon: "Target",
-    title: "Best Quality",
-    description: "We never compromise on quality, ensuring every project meets the highest standards.",
-  },
+export const chooseUsValues = [
+
   {
     icon: "Handshake",
     title: "Trust & Transparency",
-    description: "Building lasting relationships through honest communication and reliable partnerships.",
+    description:
+      "Our trust & Transparency salles and allow tmefor must quality in quality, and practices.",
+  },
+  {
+    icon: "Target",
+    title: "Best Quality",
+    description:
+      "High-quality dolor sit amet, consectetur adipiscing elit, and high-quality comprring and construction.",
   },
 ];
 

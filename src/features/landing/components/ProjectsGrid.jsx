@@ -9,7 +9,7 @@ import { ProjectCard } from "./ProjectCard";
 
 const GalleryModal = lazy(() => import("./GalleryModal"));
 
-export default function FeaturedProjects() {
+export default function ProjectsGrid() {
   const [activeCategory, setActiveCategory] = useState("All Works");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);

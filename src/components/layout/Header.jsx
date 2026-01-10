@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, ChevronDown, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -13,9 +13,27 @@ import logo from "@/assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--dark)]">
+    <header 
+      className={`
+        fixed top-0 left-0 right-0 z-50 
+        transition-all duration-300
+        ${scrolled 
+          ? "bg-[var(--dark)]/90 border-b border-white/20 shadow-md" 
+          : "bg-transparent border-transparent"                                  
+        }
+      `}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -60,10 +78,6 @@ export default function Header() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-
-            {/* <Button className="bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold px-6">
-              Login
-            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}
