@@ -9,12 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-<<<<<<< HEAD
-import { services, contactInfo } from "@/features/landing/data/landing-data";
-=======
 import { useLanguage } from "@/context/LanguageContext";
 import { contactInfoIcons } from "@/features/landing/data/landing-data";
->>>>>>> feature
 import FadeIn from "@/components/animations/FadeIn";
 
 const inputClassNames =
@@ -39,8 +35,6 @@ function ContactInfoItem({ Icon, title, lines }) {
 }
 
 export default function RequestQuote() {
-<<<<<<< HEAD
-=======
   const { t } = useLanguage();
 
   // Get localized services and contact info
@@ -54,7 +48,6 @@ export default function RequestQuote() {
     { key: "hours", Icon: contactInfoIcons.hours, ...contactInfo.hours },
   ];
 
->>>>>>> feature
   return (
     <section id="services" className="py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
@@ -63,38 +56,21 @@ export default function RequestQuote() {
           <div>
             <FadeIn direction="down">
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mb-2">
-<<<<<<< HEAD
-                Request A{" "}
-                <span className="text-[var(--primary-brand)]">Quote</span>
-              </h2>
-            </FadeIn>
-            <p className="text-gray-600 mb-8">
-              Fill in the form below and we'll get back to you as soon as
-              possible.
-=======
                 {t("contact.title")}{" "}
                 <span className="text-[var(--primary-brand)]">{t("contact.title_highlight")}</span>
               </h2>
             </FadeIn>
             <p className="text-gray-600 mb-8">
               {t("contact.subtitle")}
->>>>>>> feature
             </p>
 
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
               <FadeIn delay={0.2}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-<<<<<<< HEAD
-                  <Input placeholder="Name" className={inputClassNames} />
-                  <Input
-                    type="email"
-                    placeholder="Email"
-=======
                   <Input placeholder={t("contact.form.name")} className={inputClassNames} />
                   <Input
                     type="email"
                     placeholder={t("contact.form.email")}
->>>>>>> feature
                     className={inputClassNames}
                   />
                 </div>
@@ -102,26 +78,15 @@ export default function RequestQuote() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   type="tel"
-<<<<<<< HEAD
-                  placeholder="Phone"
-=======
                   placeholder={t("contact.form.phone")}
->>>>>>> feature
                   className={inputClassNames}
                 />
                 <Select>
                   <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-400 h-12">
-<<<<<<< HEAD
-                    <SelectValue placeholder="Select Your Service" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border-gray-200 shadow-lg">
-                    {services.map((service) => (
-=======
                     <SelectValue placeholder={t("contact.form.service")} />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-gray-200 shadow-lg">
                     {Array.isArray(services) && services.map((service) => (
->>>>>>> feature
                       <SelectItem
                         key={service.value}
                         value={service.value}
@@ -134,20 +99,12 @@ export default function RequestQuote() {
                 </Select>
               </div>
               <Textarea
-<<<<<<< HEAD
-                placeholder="Additional Details"
-=======
                 placeholder={t("contact.form.details")}
->>>>>>> feature
                 className="bg-gray-50 border-gray-200 text-[var(--dark)] placeholder:text-gray-400 min-h-[120px] focus:border-[var(--primary-brand)] focus:ring-[var(--primary-brand)]/20"
               />
               <FadeIn delay={0.4}>
                 <Button className="w-full bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold h-12">
-<<<<<<< HEAD
-                  Submit Request
-=======
                   {t("contact.form.submit")}
->>>>>>> feature
                 </Button>
               </FadeIn>
             </form>
@@ -155,19 +112,12 @@ export default function RequestQuote() {
 
           {/* Right - Contact Info */}
           <div className="lg:pl-8">
-<<<<<<< HEAD
-            <h3 className="text-2xl font-bold text-[var(--dark)] mb-8">Contact Info</h3>
-
-            <div className="space-y-6">
-              {contactInfo.map(({ key, Icon, title, lines }) => ( 
-=======
             <h3 className="text-2xl font-bold text-[var(--dark)] mb-8">
               {t("contact.info_title")}
             </h3>
 
             <div className="space-y-6">
               {contactInfoItems.map(({ key, Icon, title, lines }) => (
->>>>>>> feature
                 <ContactInfoItem
                   key={key}
                   Icon={Icon}

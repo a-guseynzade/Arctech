@@ -8,19 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-<<<<<<< HEAD
-import { navLinks, languages, companyInfo } from "@/features/landing/data/landing-data";
-=======
 import { useLanguage } from "@/context/LanguageContext";
 import { navLinksData, languages, companyInfo } from "@/features/landing/data/landing-data";
->>>>>>> feature
 import logo from "@/assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-<<<<<<< HEAD
-=======
   const { language, setLanguage, t } = useLanguage();
 
   // Get current language display info
@@ -28,7 +22,6 @@ export default function Header() {
   
   // Get localized nav links
   const navLinks = navLinksData[language] || navLinksData.en;
->>>>>>> feature
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,11 +55,7 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-<<<<<<< HEAD
-                key={link.label}
-=======
                 key={link.href}
->>>>>>> feature
                 href={link.href}
                 className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-sm font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
               >
@@ -77,13 +66,6 @@ export default function Header() {
 
           {/* Right Side - Language & CTA */}
           <div className="hidden lg:flex items-center gap-4">
-<<<<<<< HEAD
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-sm relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
-                  <Globe className="w-4 h-4" />
-                  <span>English</span>
-=======
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -91,7 +73,6 @@ export default function Header() {
                   <Globe className="w-4 h-4" />
                   <span>{currentLang.flag}</span>
                   <span>{currentLang.label}</span>
->>>>>>> feature
                   <ChevronDown className="w-4 h-4" />
                 </button>
               </DropdownMenuTrigger>
@@ -99,17 +80,12 @@ export default function Header() {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-<<<<<<< HEAD
-                    className="text-white hover:bg-[var(--primary-brand)]/20 cursor-pointer"
-                  >
-=======
                     onClick={() => setLanguage(lang.code)}
                     className={`text-white hover:bg-[var(--primary-brand)]/20 cursor-pointer ${
                       lang.code === language ? "bg-[var(--primary-brand)]/10" : ""
                     }`}
                   >
                     <span className="mr-2">{lang.flag}</span>
->>>>>>> feature
                     {lang.label}
                   </DropdownMenuItem>
                 ))}
@@ -126,18 +102,11 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[var(--dark)] border-white/10 w-[280px]">
               <div className="flex flex-col h-full pt-8">
-<<<<<<< HEAD
-                <nav className="flex flex-col gap-4">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.label}
-=======
                 {/* Mobile Navigation */}
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <a
                       key={link.href}
->>>>>>> feature
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className="text-white/80 hover:text-[var(--primary-brand)] transition-colors text-lg font-medium py-2"
@@ -146,11 +115,6 @@ export default function Header() {
                     </a>
                   ))}
                 </nav>
-<<<<<<< HEAD
-                <div className="mt-auto pb-8">
-                  <Button className="w-full bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold">
-                    Contact Us
-=======
 
                 {/* Mobile Language Switcher */}
                 <div className="mt-6 pt-6 border-t border-white/10">
@@ -180,7 +144,6 @@ export default function Header() {
                 <div className="mt-auto pb-8">
                   <Button className="w-full bg-[var(--primary-brand)] hover:bg-[var(--primary-brand-dark)] text-white font-semibold">
                     {t("header.contact_us")}
->>>>>>> feature
                   </Button>
                 </div>
               </div>

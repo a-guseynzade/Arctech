@@ -1,8 +1,5 @@
 import { cn } from "@/lib/utils";
-<<<<<<< HEAD
-=======
 import { useLanguage } from "@/context/LanguageContext";
->>>>>>> feature
 import FadeIn from "@/components/animations/FadeIn";
 
 // Dynamic logo imports
@@ -13,11 +10,8 @@ const logoModules = import.meta.glob("@/assets/partners/*.webp", {
 const logos = Object.values(logoModules);
 
 export default function PartnersMarquee({ className }) {
-<<<<<<< HEAD
-=======
   const { t } = useLanguage();
 
->>>>>>> feature
   return (
     <section
       className={cn(
@@ -29,11 +23,7 @@ export default function PartnersMarquee({ className }) {
       <div className="container mx-auto px-4 lg:px-8 mb-10">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--dark)] mb-6 whitespace-nowrap">
-<<<<<<< HEAD
-            Trusted by <span className="text-[var(--primary-brand)]">Industry Leaders</span>
-=======
             {t("partners.title")} <span className="text-[var(--primary-brand)]">{t("partners.title_highlight")}</span>
->>>>>>> feature
           </h2>
         </div>
       </div>

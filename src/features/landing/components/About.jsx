@@ -1,21 +1,14 @@
-<<<<<<< HEAD
-import { aboutValues } from "@/features/landing/data/landing-data";
-=======
 import { useLanguage } from "@/context/LanguageContext";
->>>>>>> feature
 import constructionImg from "@/assets/grid_full.webp";
 import FadeIn from "@/components/animations/FadeIn";
 
 export default function About() {
-<<<<<<< HEAD
-=======
   const { t } = useLanguage();
   
   // Get localized values from dictionary
   const aboutValues = t("about.values");
   const quote = t("about.quote");
 
->>>>>>> feature
   return (
     <section id="about" className="py-12 lg:py-20 bg-gray-50/50">
       <div className="container mx-auto px-4 lg:px-8">
@@ -42,20 +35,12 @@ export default function About() {
                 {/* Tagline/Intro with Premium Styling */}
                 <div className="relative mb-5">
                   <p className="text-slate-700 text-lg lg:text-xl leading-relaxed pl-6 border-l-2 border-[var(--primary-brand)] italic">
-<<<<<<< HEAD
-                    "{aboutValues.quote}"
-=======
                     "{quote}"
->>>>>>> feature
                   </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-<<<<<<< HEAD
-                  {aboutValues.values.map((value, index) => (
-=======
                   {Array.isArray(aboutValues) && aboutValues.map((value, index) => (
->>>>>>> feature
                     <div key={index} className="group">
                       <h3 className="text-lg font-bold text-[var(--primary-brand)]">
                         {value.title}
