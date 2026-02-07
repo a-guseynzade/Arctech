@@ -10,6 +10,22 @@
 @theme inline {
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+  /* =====================================================
+   * FIX: Explicit Container Configuration for Tailwind v4
+   * WHY: The default `container` utility in v4 requires
+   * explicit theme variables. Without these, the Vite prod
+   * build may tree-shake or misconfigure the utility,
+   * causing layout collapse (100vw stretch) on Vercel.
+   * ===================================================== */
+  --container-center: true;
+  --container-padding: 1.5rem;
+  --container-padding-lg: 2rem;
+  --container-max-width-sm: 100%;
+  --container-max-width-md: 100%;
+  --container-max-width-lg: 64rem;
+  --container-max-width-xl: 80rem;
+  --container-max-width-2xl: 88rem;
+
   /* Marquee Animation */
   --animate-marquee: marquee 60s linear infinite;
 
