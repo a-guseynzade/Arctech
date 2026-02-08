@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200">
       {/* Main Footer */}
-      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-10 lg:py-12">
+      <div className="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
         <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16">
           {/* Brand & Description - Takes majority of width */}
           <div className="flex-1">
@@ -79,7 +79,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <Separator className="bg-gray-200" />
-      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-4">
+      <div className="container mx-auto px-4 lg:px-8 py-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} {companyInfo.name}. {t("footer.rights")}

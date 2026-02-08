@@ -32,7 +32,7 @@ export default function ProjectsGrid() {
 
   return (
     <section id="projects" className="py-12 lg:py-16 bg-white">
-      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)]">
