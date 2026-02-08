@@ -8,6 +8,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 @theme inline {
+  /* DISABLE default container responsive breakpoints */
+  --container-*: initial;
+
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Переопределяем 2xl, так как стандартный (1536px) слишком широк */
@@ -64,7 +67,7 @@
   margin-inline: auto;
   padding-inline: 1.5rem;
   width: 100%;
-  max-width: var(--breakpoint-2xl);
+  max-width: 88rem !important;
 
   @media (width >= 1024px) {
     padding-inline: 2rem;
