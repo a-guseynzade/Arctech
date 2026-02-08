@@ -13,7 +13,6 @@ const ReactCompilerConfig = {
 
 export default defineConfig({
   plugins: [
-    tailwindcss(),
     react({
       babel: {
         plugins: [
@@ -21,6 +20,7 @@ export default defineConfig({
         ]
       }
     }),
+    tailwindcss(),
   ],
   server: {
     port: 5173,
