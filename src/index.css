@@ -61,12 +61,12 @@
 }
 
 @utility container {
-  /* Аналог center: true */
-  margin-inline: auto; 
-  /* Аналог padding: 1.5rem */
-  padding-inline: 1.5rem; 
-  /* Кастомный паддинг для больших экранов */
-  @media (width >= --theme(--breakpoint-lg)) {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  width: 100%;
+  max-width: var(--breakpoint-2xl);
+
+  @media (width >= 1024px) {
     padding-inline: 2rem;
   }
 }
