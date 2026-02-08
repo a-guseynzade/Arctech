@@ -50,7 +50,7 @@ export default function RequestQuote() {
 
   return (
     <section id="services" className="py-12 lg:py-16 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left - Form */}
           <div>

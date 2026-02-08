@@ -41,7 +41,7 @@ export default function Header() {
         }
       `}
     >
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
