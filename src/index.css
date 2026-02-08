@@ -4,8 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Google Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Google Font loaded via <link> in index.html - do NOT duplicate here */
 
 @theme inline {
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -134,6 +133,7 @@
   }
 
   html {
+    font-size: 16px; /* Explicit baseline for rem - prevents env differences */
     /* scroll-behavior handled by Lenis – do NOT use CSS smooth here */
     scroll-padding-top: 4rem; /* Mobile header height */
   }
