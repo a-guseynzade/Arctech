@@ -35,7 +35,7 @@ export default function ProjectsGrid() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)]">
+          <h2 className="text-5xl md:text-6xl font-bold text-[var(--dark)]">
             {t("projects.title")} <span className="text-[var(--primary-brand)]">{t("projects.title_highlight")}</span>
           </h2>
 
@@ -45,7 +45,7 @@ export default function ProjectsGrid() {
                 <TabsTrigger
                   key={categoryKey}
                   value={categoryKey}
-                  className="data-[state=active]:bg-[var(--primary-brand)] data-[state=active]:text-white bg-[var(--primary-brand)]/10 text-[var(--dark)] px-4 py-2 rounded-full text-sm"
+                  className="data-[state=active]:bg-[var(--primary-brand)] data-[state=active]:text-white bg-[var(--primary-brand)]/10 text-[var(--dark)] px-4 py-2 rounded-full text-xl"
                 >
                   {getCategoryLabel(categoryKey)}
                 </TabsTrigger>

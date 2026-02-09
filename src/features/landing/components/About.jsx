@@ -34,7 +34,7 @@ export default function About() {
                 
                 {/* Tagline/Intro with Premium Styling */}
                 <div className="relative mb-5">
-                  <p className="text-slate-700 text-lg lg:text-xl leading-relaxed pl-6 border-l-2 border-[var(--primary-brand)] italic">
+                  <p className="text-slate-700 text-2xl lg:text-3xl leading-relaxed pl-6 border-l-2 border-[var(--primary-brand)] italic">
                     "{quote}"
                   </p>
                 </div>
@@ -42,10 +42,10 @@ export default function About() {
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                   {Array.isArray(aboutValues) && aboutValues.map((value, index) => (
                     <div key={index} className="group">
-                      <h3 className="text-lg font-bold text-[var(--primary-brand)]">
+                      <h3 className="text-2xl font-bold text-[var(--primary-brand)]">
                         {value.title}
                       </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">
+                      <p className="text-gray-500 text-xl leading-relaxed">
                         {value.description}
                       </p>
                     </div>

@@ -22,7 +22,7 @@ export default function PartnersMarquee({ className }) {
       {/* Section Header - matching FeaturesList styling */}
       <div className="container mx-auto px-4 lg:px-8 mb-10">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--dark)] mb-6 whitespace-nowrap">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--dark)] mb-6 whitespace-nowrap">
             {t("partners.title")} <span className="text-[var(--primary-brand)]">{t("partners.title_highlight")}</span>
           </h2>
         </div>

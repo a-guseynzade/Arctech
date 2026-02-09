@@ -46,7 +46,7 @@ export default function Header() {
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
             <img src={logo} alt="Arctech Logo" className="h-20 lg:h-24 w-auto" />
-            <span className="text-xl lg:text-2xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
+            <span className="text-3xl lg:text-4xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
               {companyInfo.name}
             </span>
           </a>
@@ -57,7 +57,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-sm font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-xl font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export default function Header() {
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-sm relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-xl relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
                   <Globe className="w-4 h-4" />
                   <span>{currentLang.flag}</span>
                   <span>{currentLang.label}</span>
@@ -109,7 +109,7 @@ export default function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="text-white/80 hover:text-[var(--primary-brand)] transition-colors text-lg font-medium py-2"
+                      className="text-white/80 hover:text-[var(--primary-brand)] transition-colors text-2xl font-medium py-2"
                     >
                       {link.label}
                     </a>
@@ -118,7 +118,7 @@ export default function Header() {
 
                 {/* Mobile Language Switcher */}
                 <div className="mt-6 pt-6 border-t border-white/10">
-                  <p className="text-white/50 text-sm mb-3">{t("header.nav.contact")}</p>
+                  <p className="text-white/50 text-xl mb-3">{t("header.nav.contact")}</p>
                   <div className="flex gap-2">
                     {languages.map((lang) => (
                       <button
@@ -127,7 +127,7 @@ export default function Header() {
                           setLanguage(lang.code);
                           setIsOpen(false);
                         }}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-colors ${
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xl transition-colors ${
                           lang.code === language
                             ? "bg-[var(--primary-brand)] text-white"
                             : "bg-white/10 text-white/80 hover:bg-white/20"

@@ -25,7 +25,7 @@ function ContactInfoItem({ Icon, title, lines }) {
       <div>
         <h4 className="text-[var(--dark)] font-semibold mb-1">{title}</h4>
         {lines.map((line, i) => (
-          <p key={i} className="text-gray-500 text-sm">
+          <p key={i} className="text-gray-500 text-xl">
             {line}
           </p>
         ))}
@@ -55,12 +55,12 @@ export default function RequestQuote() {
           {/* Left - Form */}
           <div>
             <FadeIn direction="down">
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mb-2">
+              <h2 className="text-5xl md:text-6xl font-bold text-[var(--dark)] mb-2">
                 {t("contact.title")}{" "}
                 <span className="text-[var(--primary-brand)]">{t("contact.title_highlight")}</span>
               </h2>
             </FadeIn>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 text-2xl mb-8">
               {t("contact.subtitle")}
             </p>
 
@@ -112,7 +112,7 @@ export default function RequestQuote() {
 
           {/* Right - Contact Info */}
           <div className="lg:pl-8">
-            <h3 className="text-2xl font-bold text-[var(--dark)] mb-8">
+            <h3 className="text-4xl font-bold text-[var(--dark)] mb-8">
               {t("contact.info_title")}
             </h3>
 

@@ -29,11 +29,11 @@ export default function Footer() {
           {/* Brand & Description - Takes majority of width */}
           <div className="flex-1">
             <a href="/" className="inline-block mb-3">
-              <span className="text-2xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
+              <span className="text-4xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
                 {companyInfo.name}
               </span>
             </a>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-gray-500 text-xl leading-relaxed">
               {t("footer.description")}
             </p>
           </div>
@@ -41,7 +41,7 @@ export default function Footer() {
           <div className="flex flex-col items-start lg:items-end gap-5 shrink-0 lg:mt-2">
             {/* Navigation Links */}
             <div className="lg:text-right">
-              <h4 className="text-lg font-semibold text-[var(--dark)] mb-3">
+              <h4 className="text-2xl font-semibold text-[var(--dark)] mb-3">
                 {t("footer.quick_links")}
               </h4>
               <ul className="flex flex-wrap gap-x-5 gap-y-1 lg:justify-end">
@@ -49,7 +49,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-gray-500 hover:text-[var(--primary-brand)] transition-colors text-sm"
+                      className="text-gray-500 hover:text-[var(--primary-brand)] transition-colors text-xl"
                     >
                       {link.label}
                     </a>
@@ -81,14 +81,14 @@ export default function Footer() {
       <Separator className="bg-gray-200" />
       <div className="container mx-auto px-4 lg:px-8 py-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-xl">
             © {new Date().getFullYear()} {companyInfo.name}. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-sm transition-colors">
+            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-xl transition-colors">
               {t("footer.terms")}
             </a>
-            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-sm transition-colors">
+            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-xl transition-colors">
               {t("footer.privacy")}
             </a>
           </div>
