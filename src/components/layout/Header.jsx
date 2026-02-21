@@ -41,11 +41,11 @@ export default function Header() {
         }
       `}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1rem,4vw,2.5rem)]">
+      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)]">
         <div className="flex items-center justify-between h-[clamp(4rem,6vw,6rem)]">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <img src={logo} alt="Arctech Logo" className="h-[clamp(4rem,6vw,6rem)] w-auto" />
+            <img src={logo} alt="Arctech Logo" className="h-[clamp(2.5rem,4vw,4.5rem)] w-auto" />
             <span className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-[var(--primary-brand)] uppercase tracking-wider">
               {companyInfo.name}
             </span>
@@ -57,7 +57,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-[clamp(1rem,1.5vw,1.25rem)] font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-[clamp(0.875rem,1vw,1rem)] font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export default function Header() {
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-[clamp(1rem,1.5vw,1.25rem)] relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-[clamp(0.875rem,1vw,1rem)] relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
                   <Globe className="w-4 h-4" />
                   <span>{currentLang.flag}</span>
                   <span>{currentLang.label}</span>

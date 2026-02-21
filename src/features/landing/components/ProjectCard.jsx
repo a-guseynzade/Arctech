@@ -6,7 +6,7 @@ export function ProjectCard({ project, onClick }) {
       onClick={onClick}
       className="group overflow-hidden border-none bg-transparent p-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer rounded-2xl"
     >
-      <div className="relative overflow-hidden w-full aspect-[4/3] rounded-2xl">
+      <div className="relative overflow-hidden w-full aspect-[1.5] rounded-2xl">
         <img
           src={project.thumbnail}
           alt={project.alt}
