@@ -11,7 +11,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-12 lg:py-16 2xl:py-20 3xl:py-28 bg-gray-50/50">
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)]">
+      <div className="w-full max-w-[1536px] mx-auto px-[clamp(1rem,2vw,2rem)]">
         <div className="grid lg:grid-cols-12 items-start relative">
           
           {/* Left: Large Feature Image */}

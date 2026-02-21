@@ -20,7 +20,7 @@ export default function PartnersMarquee({ className }) {
       )}
     >
       {/* Section Header - matching FeaturesList styling */}
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)] mb-[clamp(1.5rem,2.5vw,2.5rem)]">
+      <div className="w-full max-w-[1536px] mx-auto px-[clamp(1rem,2vw,2rem)] mb-[clamp(1.5rem,2.5vw,2.5rem)]">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-[clamp(1.875rem,3.5vw,3.75rem)] font-bold text-[var(--dark)] mb-6">
             {t("partners.title")} <span className="text-[var(--primary-brand)]">{t("partners.title_highlight")}</span>
@@ -29,7 +29,7 @@ export default function PartnersMarquee({ className }) {
       </div>
 
       {/* Marquee Container with Premium Card Styling */}
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)]">
+      <div className="w-full max-w-[1536px] mx-auto px-[clamp(1rem,2vw,2rem)]">
         <FadeIn duration={1.0}>
           <div className="relative p-[clamp(1.5rem,3vw,4rem)] rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden">
             {/* Gradient Edge Fades - matching card background */}

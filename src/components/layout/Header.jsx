@@ -41,23 +41,23 @@ export default function Header() {
         }
       `}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)]">
+      <div className="w-full max-w-[1536px] mx-auto px-[clamp(1rem,2vw,2rem)]">
         <div className="flex items-center justify-between h-[clamp(4rem,6vw,6rem)]">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <img src={logo} alt="Arctech Logo" className="h-[clamp(2.5rem,4vw,4.5rem)] w-auto" />
-            <span className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-[var(--primary-brand)] uppercase tracking-wider">
+            <img src={logo} alt="Arctech Logo" className="h-[clamp(3rem,4vw,4.5rem)] w-auto" />
+            <span className="text-[clamp(1.25rem,2vw,1.75rem)] font-bold text-[var(--primary-brand)] uppercase tracking-wider">
               {companyInfo.name}
             </span>
           </a>
 
           {/* Desktop Navigation - Lenis handles anchor scrolling via anchors: true */}
-          <nav className="hidden lg:flex items-center gap-[clamp(1.5rem,2.5vw,3rem)]">
+          <nav className="hidden lg:flex items-center gap-[clamp(1.25rem,2vw,2.5rem)]">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-[clamp(0.875rem,1vw,1rem)] font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+                className="relative text-white/80 hover:text-[var(--primary-brand)] transition-colors duration-200 text-[clamp(0.875rem,1vw,1.125rem)] font-medium after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export default function Header() {
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-[clamp(0.875rem,1vw,1rem)] relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+                <button className="flex items-center gap-2 text-white/80 hover:text-[var(--primary-brand)] transition-colors text-[clamp(0.875rem,1vw,1.125rem)] relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary-brand)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
                   <Globe className="w-4 h-4" />
                   <span>{currentLang.flag}</span>
                   <span>{currentLang.label}</span>

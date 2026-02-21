@@ -32,10 +32,10 @@ export default function ProjectsGrid() {
 
   return (
     <section id="projects" className="py-12 lg:py-16 bg-white">
-      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1.5rem,5vw,8rem)]">
+      <div className="w-full max-w-[1536px] mx-auto px-[clamp(1rem,2vw,2rem)]">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
-          <h2 className="text-[clamp(1.75rem,3vw,3.25rem)] font-bold text-[var(--dark)]">
+          <h2 className="text-[clamp(1.75rem,2.5vw,3rem)] font-bold text-[var(--dark)]">
             {t("projects.title")} <span className="text-[var(--primary-brand)]">{t("projects.title_highlight")}</span>
           </h2>
 
@@ -45,7 +45,7 @@ export default function ProjectsGrid() {
                 <TabsTrigger
                   key={categoryKey}
                   value={categoryKey}
-                  className="data-[state=active]:bg-[var(--primary-brand)] data-[state=active]:text-white bg-[var(--primary-brand)]/10 text-[var(--dark)] px-4 py-2 rounded-full text-[clamp(0.8125rem,1vw,0.9375rem)]"
+                  className="data-[state=active]:bg-[var(--primary-brand)] data-[state=active]:text-white bg-[var(--primary-brand)]/10 text-[var(--dark)] px-4 py-2 rounded-full text-sm"
                 >
                   {getCategoryLabel(categoryKey)}
                 </TabsTrigger>
@@ -63,7 +63,7 @@ export default function ProjectsGrid() {
           return (
             <div
               key={categoryKey}
-              className={`grid [grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(1rem,1.5vw,2rem)] ${isActive ? "" : "hidden"}`}
+              className={`grid [grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(0.75rem,1vw,1.25rem)] ${isActive ? "" : "hidden"}`}
               aria-hidden={!isActive}
             >
               {data.previewProjects.map((project, index) => (
