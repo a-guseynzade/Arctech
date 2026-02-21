@@ -40,7 +40,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative min-h-screen flex items-center justify-center">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold text-white italic text-center">
+        <h1 className="text-[clamp(1.875rem,5vw,3.75rem)] px-[clamp(1rem,4vw,2.5rem)] font-bold text-white italic text-center">
           {t("hero.tagline")}
         </h1>
       </div>

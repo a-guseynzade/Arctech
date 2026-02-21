@@ -25,7 +25,7 @@ function ContactInfoItem({ Icon, title, lines }) {
       <div>
         <h4 className="text-[var(--dark)] font-semibold mb-1">{title}</h4>
         {lines.map((line, i) => (
-          <p key={i} className="text-gray-500 text-base xl:text-lg">
+          <p key={i} className="text-gray-500 text-[clamp(1rem,1.5vw,1.25rem)]">
             {line}
           </p>
         ))}
@@ -50,17 +50,17 @@ export default function RequestQuote() {
 
   return (
     <section id="services" className="py-12 lg:py-16 bg-white">
-      <div className="container mx-auto px-4 lg:px-6 xl:px-8 3xl:max-w-screen-2xl">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-14 2xl:gap-16 3xl:gap-24">
+      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1rem,4vw,2.5rem)]">
+        <div className="grid lg:grid-cols-2 gap-[clamp(2rem,4vw,6rem)]">
           {/* Left - Form */}
           <div>
             <FadeIn direction="down">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold text-[var(--dark)] mb-2">
+              <h2 className="text-[clamp(1.875rem,3.5vw,3.75rem)] font-bold text-[var(--dark)] mb-2">
                 {t("contact.title")}{" "}
                 <span className="text-[var(--primary-brand)]">{t("contact.title_highlight")}</span>
               </h2>
             </FadeIn>
-            <p className="text-gray-600 text-base xl:text-lg 2xl:text-xl mb-6 xl:mb-8">
+            <p className="text-gray-600 text-[clamp(1rem,1.5vw,1.25rem)] mb-[clamp(1.5rem,2.5vw,2rem)]">
               {t("contact.subtitle")}
             </p>
 
@@ -112,7 +112,7 @@ export default function RequestQuote() {
 
           {/* Right - Contact Info */}
           <div className="lg:pl-8">
-            <h3 className="text-2xl xl:text-3xl 2xl:text-3xl 3xl:text-4xl font-bold text-[var(--dark)] mb-6 xl:mb-8 3xl:mb-10">
+            <h3 className="text-[clamp(1.5rem,2.5vw,2.25rem)] font-bold text-[var(--dark)] mb-[clamp(1.5rem,2.5vw,2.5rem)]">
               {t("contact.info_title")}
             </h3>
 

@@ -24,16 +24,16 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 lg:px-6 xl:px-8 3xl:max-w-screen-2xl py-8 lg:py-10 xl:py-12 3xl:py-16">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10 xl:gap-14 2xl:gap-16 3xl:gap-24">
+      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)]">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-[clamp(2rem,4vw,6rem)]">
           {/* Brand & Description - Takes majority of width */}
           <div className="flex-1">
             <a href="/" className="inline-block mb-3">
-              <span className="text-2xl xl:text-3xl 2xl:text-3xl 3xl:text-4xl font-bold text-[var(--primary-brand)] uppercase tracking-wider">
+              <span className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-[var(--primary-brand)] uppercase tracking-wider">
                 {companyInfo.name}
               </span>
             </a>
-            <p className="text-gray-500 text-base xl:text-lg 3xl:text-xl leading-relaxed">
+            <p className="text-gray-500 text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed">
               {t("footer.description")}
             </p>
           </div>
@@ -41,7 +41,7 @@ export default function Footer() {
           <div className="flex flex-col items-start lg:items-end gap-5 shrink-0 lg:mt-2">
             {/* Navigation Links */}
             <div className="lg:text-right">
-              <h4 className="text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-semibold text-[var(--dark)] mb-3">
+              <h4 className="text-[clamp(1.125rem,2vw,1.875rem)] font-semibold text-[var(--dark)] mb-3">
                 {t("footer.quick_links")}
               </h4>
               <ul className="flex flex-wrap gap-x-5 gap-y-1 lg:justify-end">
@@ -49,7 +49,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-gray-500 hover:text-[var(--primary-brand)] transition-colors text-sm xl:text-base"
+                      className="text-gray-500 hover:text-[var(--primary-brand)] transition-colors text-[clamp(0.875rem,1vw,1rem)]"
                     >
                       {link.label}
                     </a>
@@ -79,16 +79,16 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <Separator className="bg-gray-200" />
-      <div className="container mx-auto px-4 lg:px-6 xl:px-8 3xl:max-w-screen-2xl py-4 3xl:py-6">
+      <div className="w-full max-w-[1440px] mx-auto px-[clamp(1rem,4vw,2.5rem)] py-[clamp(1rem,1.5vw,1.5rem)]">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm xl:text-base">
+          <p className="text-gray-400 text-[clamp(0.875rem,1vw,1rem)]">
             © {new Date().getFullYear()} {companyInfo.name}. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-sm xl:text-base transition-colors">
+            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-[clamp(0.875rem,1vw,1rem)] transition-colors">
               {t("footer.terms")}
             </a>
-            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-sm xl:text-base transition-colors">
+            <a href="#" className="text-gray-400 hover:text-[var(--primary-brand)] text-[clamp(0.875rem,1vw,1rem)] transition-colors">
               {t("footer.privacy")}
             </a>
           </div>
