@@ -63,7 +63,7 @@ export default function ProjectsGrid() {
           return (
             <div
               key={categoryKey}
-              className={`grid [grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(0.75rem,1vw,1.25rem)] ${isActive ? "" : "hidden"}`}
+              className={`grid [grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))] gap-[clamp(0.75rem,1vw,1.25rem)] ${isActive ? "" : "hidden"}`}
               aria-hidden={!isActive}
             >
               {data.previewProjects.map((project, index) => (
